@@ -2,11 +2,6 @@
   "name": "BloodBud",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
-    "react-test-renderer": "16.3.1"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -14,10 +9,39 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest",
-    "generate": "plop --plopfile internals/generators/index.js"
+    "generate": "plop --plopfile internals/generators/index.js",
+    "lint": "eslint -c .eslintrc app",
+    "lint-fix": "eslint --fix -c .eslintrc app"
   },
   "jest": {
     "preset": "jest-expo"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-react-native": "^3.3.0",
+    "husky": "^0.14.3",
+    "jest-expo": "~27.0.0",
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.14.2",
+    "react-native-scripts": "1.14.0",
+    "react-test-renderer": "16.3.1"
   },
   "dependencies": {
     "expo": "^27.0.1",
