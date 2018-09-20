@@ -5,14 +5,16 @@
 */
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 // import PropTypes from 'prop-types';
+
+// import {Button} from './styles'
 
 function SampleWidget(props) {
   return (
     <View>
-      SampleWidget
-    </View>
+    <Text>Button</Text>
+  </View>
   );
 }
 
