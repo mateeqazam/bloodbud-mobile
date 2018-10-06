@@ -7,6 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome, { Icons } from 'react-native-fontawesome';
+import ViewPropTypes from 'bloodbud/src/config/ViewPropTypes';
 
 import parseStyles from './parseStyles';
 
@@ -22,7 +23,7 @@ function Icon(props) {
 
 Icon.propTypes = {
   src: PropTypes.string.isRequired,
-  style: PropTypes.object,
+  style: ViewPropTypes.style,
   color: PropTypes.string,
   fontSize: PropTypes.number,
 };
