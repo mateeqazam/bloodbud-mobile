@@ -19,7 +19,7 @@ export default class App extends React.Component {
   loadResourcesAsync = async () => Promise.all([
     // TODO: Remove unudsed fonts to speed up application loading
     Font.loadAsync({
-      FontAwesome: require('./assets/fonts/FontAwesome.ttf'),
+      FontAwesome: require('./assets/fonts/FontAwesome.otf'),
 
       'Segoeui-Light': require('./assets/fonts/Segoeui-Light.ttf'),
       'Segoeui-SemiLight': require('./assets/fonts/Segoeui-SemiLight.ttf'),
