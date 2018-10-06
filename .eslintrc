@@ -23,6 +23,8 @@
     "plugin:react-native/all"
   ],
   "rules" : {
-    "arrow-body-style" : 1
+    "arrow-body-style" : 1,
+    "class-methods-use-this": 0,
+    "import/no-unresolved": 1
   }
 }
