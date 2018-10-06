@@ -10,6 +10,7 @@ import { View } from 'react-native';
 
 import Text from 'bloodbud/src/components/widgets/Text';
 import Icon from 'bloodbud/src/components/widgets/Icon';
+import TextInput from 'bloodbud/src/components/widgets/TextInput';
 
 class App extends React.Component {
   render() {
@@ -18,7 +19,8 @@ class App extends React.Component {
         <Text>Sample Text</Text>
         <Text textTransform="uppercase">Sample Text</Text>
         <Text fontWeight="bold">Sample Text</Text>
-        <Icon src="user" color="red" fontSize={24} />
+        <Icon name="user" color="red" fontSize={24} />
+        <TextInput iconLeft="user" iconRight="eye" name="username" placeholder="Name" />
       </View>
     );
   }

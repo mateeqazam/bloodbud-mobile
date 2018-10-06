@@ -12,17 +12,18 @@ import ViewPropTypes from 'bloodbud/src/config/ViewPropTypes';
 import parseStyles from './parseStyles';
 
 function Icon(props) {
-  if (!props || !Icons[props.src]) return null;
+  if (!props || !Icons[props.name]) return null;
 
-  const { src, style, ...restProps } = props;
+  const { name, style, ...restProps } = props;
+  delete restProps.align;
   const styles = parseStyles(style, restProps);
   return (
-    <FontAwesome style={styles}>{Icons[props.src]}</FontAwesome>
+    <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
   );
 }
 
 Icon.propTypes = {
-  src: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   style: ViewPropTypes.style,
   color: PropTypes.string,
   fontSize: PropTypes.number,
