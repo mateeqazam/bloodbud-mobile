@@ -6,13 +6,13 @@
 
 import React from 'react';
 import { View } from 'react-native';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 import Text from '../../widgets/Text'
 import Icon from '../../widgets/Icon'
 import Checkbox from '../../widgets/Checkbox'
-import IconButton from '../../widgets/IconButton'
+// import IconButton from '../../widgets/IconButton'
 
 import {
   StyledView,
