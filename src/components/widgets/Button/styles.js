@@ -1,18 +1,21 @@
 import styled, { css } from 'styled-components';
 
 export const ButtonWrapper = styled.View`
+  display: flex;
+  flex-direction: row;
   alignItems: center;
   backgroundColor: #DDDDDD;
   backgroundColor: ${props => props.bgColor || 'black'};
   padding: 10px;
   borderRadius: 8px;
+  justify-content: space-around;
 `;
 
 
 
 export const TouchableOpacity = styled.TouchableOpacity`
-  padding: 10px;
-  ${props => !!props.block && css`width: 100%`};
+  padding-vertical: 10px;
+  ${props => !!props.block && css`width: ${props.block}`};
 `
 
 export const Text = styled.Text`

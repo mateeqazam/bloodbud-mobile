@@ -10,11 +10,12 @@ import { View } from 'react-native';
 
 import { ButtonWrapper, TouchableOpacity } from './styles'
 import Text from '../../widgets/Text'
+import Icon from '../Icon'
 
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, block } = this.props
+    const { onClick, title, variant, block, icon } = this.props
 
     const color = variant === 'grey' ? 'black' : 'white'
     let bgColor = null
@@ -37,6 +38,7 @@ class Button extends React.Component {
     return (
       <TouchableOpacity block={block} onPress={()=>{onClick()}}>
         <ButtonWrapper bgColor={bgColor} >
+          {icon && <Icon size={30} name={icon} />}
           <Text color={color}> {title} </Text>
         </ButtonWrapper>
       </TouchableOpacity>

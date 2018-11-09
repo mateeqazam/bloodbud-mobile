@@ -17,6 +17,7 @@ function Icon(props) {
   const { name, style, ...restProps } = props;
   delete restProps.align;
   const styles = parseStyles(style, restProps);
+  // console.log('icons',Icons)
   return (
     <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
   );

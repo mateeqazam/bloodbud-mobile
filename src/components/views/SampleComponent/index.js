@@ -34,28 +34,32 @@ class SampleComponent extends React.PureComponent {
         <Logo source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
         />
 
-        <Input type='default' placeholder='Username' icon='book'  />
-        <Input type='email-address' placeholder='Email Address' icon='like'  />
-        <Input secureTextEntry type='default' placeholder='Password' icon='paper-plane'  />
+        <Input type='default' placeholder='Username' icon='user'  />
+        <Input type='email-address' placeholder='Email Address' icon='mailForward'  />
+        <Input secureTextEntry type='default' placeholder='Password' icon='lock'  />
 
 
         <Button 
           title='Sign Up'
           onClick={()=>console.log('sign up')}
           variant='default'
-          block
+          block='100%'
         />
         <Text> ──────── Or Connect with ──────── </Text>
 
         <SocialButtons>
 
         <Button 
+          block='45%'
+          icon='facebook'
           title='FACEBOOK'
           onClick={()=>console.log('FB')}
           variant='success'
         />
 
         <Button 
+          block='45%'
+          icon='google'
           title='GOOGLE PLUS'
           onClick={()=>console.log('G')}
           variant='primary'
@@ -64,7 +68,7 @@ class SampleComponent extends React.PureComponent {
 
 
         <Button 
-          block
+          block='100%'
           title='Already Account'
           onClick={()=>console.log('already account')}
           variant='grey'

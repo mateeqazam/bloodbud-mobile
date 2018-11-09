@@ -8,8 +8,11 @@ export const Logo = styled.Image`
 
 
 export const SocialButtons = styled.View`
-display: flex;
-flexDirection: row;
+  width: 100%;
+  display: flex;
+  flexDirection: row;
+  justify-content: space-between;
+
 `;
 
 
