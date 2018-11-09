@@ -14,7 +14,7 @@ import TextInput from 'bloodbud/src/components/widgets/TextInput';
 
 import { ThemeProvider } from 'styled-components';
 import { Font } from 'expo';
-import AppComponent from '../../components/views/SampleComponent';
+import AppComponent from '../../components/views/BloodRequest';
 
 class App extends React.Component {
   constructor(props) {

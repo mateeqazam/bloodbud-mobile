@@ -1,9 +1,23 @@
 import styled from 'styled-components';
-
+import Text from '../../widgets/Text'
 
 export const Logo = styled.Image`
   width: 100;
   height: 100;
+`;
+
+
+export const LogoWrap = styled.View`
+  display: flex;
+  flexDirection: row;
+  justify-content: center;
+`;
+
+
+
+export const TextWrap = styled.View`
+  display: flex;
+  flexDirection: row-reverse;
 `;
 
 
@@ -14,9 +28,7 @@ export const SocialButtons = styled.View`
   justify-content: space-between;
 `;
 
-
 export const StyledView = styled.View`
-  align-items: center;
   padding:10px;
 `;
 
