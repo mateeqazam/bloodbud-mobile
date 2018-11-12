@@ -17,7 +17,7 @@ export const SocialButtons = styled.View`
 
 export const StyledView = styled.View`
   align-items: center;
-  padding:10px;
+  padding:20px;
 `;
 
 export const MainView = styled.View`

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 
-export const MainView = styled.View`
-  margin-top:10px;
+export const MainView = styled.ScrollView`
+  marginTop:100px;
 `;
 
 

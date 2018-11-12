@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import Text from '../../widgets/Text'
+import styled from 'styled-components'
 
 export const Logo = styled.Image`
   width: 100;
@@ -29,7 +28,7 @@ export const SocialButtons = styled.View`
 `;
 
 export const StyledView = styled.View`
-  padding:10px;
+  padding:20px;
 `;
 
 export const MainView = styled.View`

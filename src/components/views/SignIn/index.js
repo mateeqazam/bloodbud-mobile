@@ -5,14 +5,9 @@
 */
 
 import React from 'react';
-import { Image } from 'react-native';
-import PropTypes from 'prop-types';
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 import Text from '../../widgets/Text'
-import Icon from '../../widgets/Icon'
-import Checkbox from '../../widgets/Checkbox'
-// import IconButton from '../../widgets/IconButton'
 
 import {
   StyledView,
@@ -35,7 +30,7 @@ class SignIn extends React.PureComponent {
 
         <LogoWrap><Logo source={{uri: 'https://facebook.github.io/react/logo-og.png'}} /></LogoWrap>
 
-        <Input type='email-address' placeholder='Email Address' icon='mailForward'  />
+        <Input type='email-address' placeholder='Email Address' icon='envelope'  />
         <Input secureTextEntry type='default' placeholder='Password' icon='lock'  />
         <TextWrap><Text>Forget Password?</Text></TextWrap>
 
@@ -54,15 +49,15 @@ class SignIn extends React.PureComponent {
           icon='facebook'
           title='FACEBOOK'
           onClick={()=>console.log('FB')}
-          variant='success'
+          variant='fb'
         />
 
         <Button 
           block='45%'
-          icon='google'
+          icon='googlePlus'
           title='GOOGLE PLUS'
           onClick={()=>console.log('G')}
-          variant='primary'
+          variant='gp'
         />
       </SocialButtons>
 
