@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-
 export const MainView = styled.ScrollView`
   marginTop:100px;
 `;
-
 
 export const Wrapper = styled.View`
   display: flex;
