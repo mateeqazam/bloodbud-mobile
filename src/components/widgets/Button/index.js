@@ -42,7 +42,7 @@ class Button extends React.Component {
     return (
       <TouchableOpacity block={block} onPress={()=>{onClick()}}>
         <ButtonWrapper bgColor={bgColor} >
-          {icon && <Icon color={'white'} size={30} name={icon} />}
+          {icon && <Icon color={'white'} name={icon} />}
           <Text color={color}>{title}</Text>
         </ButtonWrapper>
       </TouchableOpacity>

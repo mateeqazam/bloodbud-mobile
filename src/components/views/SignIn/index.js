@@ -47,7 +47,7 @@ class SignIn extends React.PureComponent {
         <Button 
           block='45%'
           icon='facebook'
-          title='FACEBOOK'
+          title='  FACEBOOK'
           onClick={()=>console.log('FB')}
           variant='fb'
         />
@@ -55,7 +55,7 @@ class SignIn extends React.PureComponent {
         <Button 
           block='45%'
           icon='googlePlus'
-          title='GOOGLE PLUS'
+          title='  GOOGLE PLUS'
           onClick={()=>console.log('G')}
           variant='gp'
         />

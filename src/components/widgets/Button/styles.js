@@ -1,11 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const ButtonWrapper = styled.View`
-  display: flex;
   flex-direction: row;
-  alignItems: center;
-  backgroundColor: #DDDDDD;
-  backgroundColor: ${props => props.bgColor || 'black'};
+  backgroundColor: ${props => props.bgColor || '#DDDDDD'};
   padding: 10px;
   borderRadius: 5px;
   justify-content: center;

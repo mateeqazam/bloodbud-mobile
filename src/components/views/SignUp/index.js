@@ -35,19 +35,19 @@ class SignUp extends React.PureComponent {
           variant='default'
           block='100%'
         />
-        <Text> ──────── Or Connect with ──────── </Text>
+        <Text>{`──────── Or Connect with ────────`}</Text>
         <SocialButtons>
           <Button 
             block='45%'
             icon='facebook'
-            title='FACEBOOK'
+            title='  FACEBOOK'
             onClick={()=>console.log('FB')}
             variant='fb'
           />
           <Button 
             block='45%'
             icon='googlePlus'
-            title='GOOGLE PLUS'
+            title='  GOOGLE PLUS'
             onClick={()=>console.log('G')}
             variant='gp'
           />
