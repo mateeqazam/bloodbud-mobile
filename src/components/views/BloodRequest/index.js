@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
@@ -16,20 +16,26 @@ import {
   InfoView,
   Logo,
   ProfileView,
-  Wrapper
+  Wrapper,
+  Info
 } from './styles';
 
 class BloodRequest extends React.PureComponent {
   render() {
-    let a1 = []
+    let arr = []
     for (let i=0;i<9;i++){
-      a1.push(
-        <Wrapper>
+      arr.push(
+        <Wrapper key={i}>
         <ProfileView>
           <Logo source={{uri: 'https://facebook.github.io/react/logo-og.png'}} />
           <InfoView>
-            <Text>Ali {i}</Text>
-            <Text fontWeight={'bold'}>Age: {i} - Blood AB+</Text>
+              <Text fontWeight='bold'>{`Ali ${i}`}</Text>
+              <Info>
+                <Text>Age:</Text>
+                <Text fontWeight='bold'>{` ${i}  `}</Text>
+                <Text>- Blood</Text>
+                <Text fontWeight='bold'>{`  AB+ `}</Text>
+              </Info>
           </InfoView> 
         </ProfileView>
         <Button 
@@ -43,9 +49,8 @@ class BloodRequest extends React.PureComponent {
 
     return (
       <MainView>
-        <Text>BloodRequest</Text>
         <MainWrapper>
-          {a1}
+          {arr}
         </MainWrapper>
       </MainView>
     );

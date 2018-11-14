@@ -7,7 +7,7 @@ export const ButtonWrapper = styled.View`
   backgroundColor: #DDDDDD;
   backgroundColor: ${props => props.bgColor || 'black'};
   padding: 10px;
-  borderRadius: 8px;
+  borderRadius: 5px;
   justify-content: center;
 `;
 

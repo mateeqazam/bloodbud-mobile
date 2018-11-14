@@ -1,12 +1,18 @@
 import styled from 'styled-components';
 
 export const MainView = styled.View`
-display:flex;
-flexDirection:column;
-justifyContent:space-between;
-padding:20px;
-marginBottom:30px
+    padding:10px;
+    marginTop:50px;
+    justify-content:space-between;
+    flex:1;
+`;
+
+
+export const Wrapper = styled.View`
+    borderBottomWidth:1px;
+    borderBottomColor:lightgray;
 `;
 
 export const Dropdown = styled.Picker`
+padding:0;
 `;

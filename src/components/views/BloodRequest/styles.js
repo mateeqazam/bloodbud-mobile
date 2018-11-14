@@ -5,6 +5,12 @@ export const MainView = styled.View`
   flex:1;
 `;
 
+
+export const Info = styled.View`
+  flex-direction:row;
+`;
+
+
 export const ProfileView = styled.View`
 display: flex;
 flex-direction:row;

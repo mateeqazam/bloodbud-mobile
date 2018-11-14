@@ -8,7 +8,6 @@ import React from 'react';
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 import Text from '../../widgets/Text'
-import Icon from '../../widgets/Icon'
 
 import {
   StyledView,

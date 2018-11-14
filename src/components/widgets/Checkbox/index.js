@@ -5,8 +5,9 @@
 */
 
 import React from 'react';
-import { View, Text, CheckBox } from 'react-native';
+import { CheckBox } from 'react-native';
 // import PropTypes from 'prop-types';
+import Text from '../Text'
 
 import {
   StyledView

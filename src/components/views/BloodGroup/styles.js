@@ -5,12 +5,8 @@ export const MainView = styled.ScrollView`
 `;
 
 export const Wrapper = styled.View`
-  display: flex;
   padding:10px;
   borderBottomWidth:1;
-`;
-
-export const BloodType = styled.View`
-  display: flex;
+  borderBottomColor:lightgray;
   flexDirection: row;
 `;

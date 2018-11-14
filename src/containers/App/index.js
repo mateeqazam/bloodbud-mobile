@@ -5,13 +5,6 @@
 */
 
 import React from 'react';
-import { View } from 'react-native';
-// import PropTypes from 'prop-types';
-
-import Text from 'bloodbud/src/components/widgets/Text';
-import Icon from 'bloodbud/src/components/widgets/Icon';
-import TextInput from 'bloodbud/src/components/widgets/TextInput';
-
 import { ThemeProvider } from 'styled-components';
 import { Font } from 'expo';
 import AppComponent from '../../components/views/BloodRequest';
@@ -49,7 +42,6 @@ class App extends React.Component {
 
     // return (
     //   <View>
-    //     <Text>Sample Text</Text>
     //     <Text textTransform="uppercase">Sample Text</Text>
     //     <Text fontWeight="bold">Sample Text</Text>
     //     <Icon name="user" color="red" fontSize={24} />
@@ -58,9 +50,5 @@ class App extends React.Component {
     // );
   }
 }
-
-App.propTypes = {
-
-};
 
 export default App;
