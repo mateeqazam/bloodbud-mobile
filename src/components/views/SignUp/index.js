@@ -13,12 +13,12 @@ import {
   StyledView,
   Logo,
   SocialButtons,
+  LineContainer,
+  Line,
   MainView
-} from './styles';
-
+} from './styles'
 
 class SignUp extends React.PureComponent {
-
 
   render() {
 
@@ -35,7 +35,13 @@ class SignUp extends React.PureComponent {
           variant='default'
           block='100%'
         />
-        <Text>{`──────── Or Connect with ────────`}</Text>
+
+        <LineContainer>
+          <Line /> 
+          <Text> Or Connect with </Text> 
+          <Line />
+        </LineContainer>
+
         <SocialButtons>
           <Button 
             block='45%'

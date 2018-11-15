@@ -15,12 +15,12 @@ import {
   SocialButtons,
   TextWrap,
   LogoWrap,
+  LineContainer,
+  Line,
   MainView
 } from './styles';
 
-
 class SignIn extends React.PureComponent {
-
 
   render() {
 
@@ -40,7 +40,12 @@ class SignIn extends React.PureComponent {
           variant='default'
           block='100%'
         />
-        <Text> ──────── Or Connect with ──────── </Text>
+
+        <LineContainer>
+          <Line /> 
+          <Text> Or Connect with </Text> 
+          <Line />
+        </LineContainer>
 
         <SocialButtons>
 

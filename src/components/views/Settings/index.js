@@ -10,6 +10,7 @@ import { View} from 'react-native';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
 import Icon from '../../widgets/Icon'
+import Map from '../Map'
 
 import {
   MainView,
@@ -23,8 +24,8 @@ class Settings extends React.PureComponent {
     return (
       <Wrapper>
       <ProfileView>
-        <Icon size={30} name={icon} />
-        <Text>{key}</Text>
+        <Icon name={icon} />
+        <Text>{`  ${key}`}</Text>
       </ProfileView>
       <Text>{value}</Text>
     </Wrapper>
@@ -32,8 +33,18 @@ class Settings extends React.PureComponent {
   }
 
   render() {
+    let mapStyle = {
+      height:250,
+      position: 'relative',
+      top: 10,
+      left: 0,
+      right: 0,
+      bottom: 0
+    }
+
     return (
       <MainView>
+        <Map mapStyle={mapStyle} />
         {this.showElement('Name','Ali','user')}
         {this.showElement('Email','ali@gmail.com','envelope')}
         {this.showElement('Phone Number','090078601','phone')}
