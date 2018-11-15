@@ -22,6 +22,10 @@ import {
 
 class SignIn extends React.PureComponent {
 
+  static navigationOptions = {
+    title: 'Sign In',
+  }
+
   render() {
 
     return (
@@ -70,7 +74,7 @@ class SignIn extends React.PureComponent {
         <Button 
           block='100%'
           title='Sign Up'
-          onClick={()=>console.log('sign up')}
+          onClick={()=>this.props.navigation.navigate('SignUp')}
           variant='grey'
         />
 

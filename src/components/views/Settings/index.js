@@ -20,6 +20,10 @@ import {
 
 class Settings extends React.PureComponent {
 
+  static navigationOptions = {
+    title: 'Settings',
+  }
+
   showElement(key,value,icon){
     return (
       <Wrapper>

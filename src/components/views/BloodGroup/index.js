@@ -13,6 +13,10 @@ import {
 } from './styles';
 
 class BloodGroup extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Blood Group',
+  }
+
   showType(type,check){
     return (
       <Wrapper>

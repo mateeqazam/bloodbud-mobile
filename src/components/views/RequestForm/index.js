@@ -15,6 +15,10 @@ import {
 } from './styles'
 
 class RequestForm extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Blood Request',
+  }
+
   render() {
     return (
       <MainView>
@@ -59,7 +63,7 @@ class RequestForm extends React.PureComponent {
 
         <Button 
           title="Request"
-          onClick={()=>console.log('request')}
+          onClick={()=>this.props.navigation.navigate('BloodGroup')}
           variant='default'
         />
       </MainView>

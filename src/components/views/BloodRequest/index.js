@@ -21,6 +21,10 @@ import {
 } from './styles';
 
 class BloodRequest extends React.PureComponent {
+  static navigationOptions = {
+    title: 'Blood Request',
+  }
+
   render() {
     let arr = []
     for (let i=0;i<9;i++){

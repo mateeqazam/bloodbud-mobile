@@ -20,6 +20,10 @@ import {
 
 class SignUp extends React.PureComponent {
 
+  static navigationOptions = {
+    title: 'Sign Up',
+  }
+
   render() {
 
     return (
@@ -31,7 +35,7 @@ class SignUp extends React.PureComponent {
         <Input secureTextEntry type='default' placeholder='Password' icon='lock'  />
         <Button 
           title='Sign Up'
-          onClick={()=>console.log('sign up')}
+          onClick={()=>this.props.navigation.navigate('Settings')}
           variant='default'
           block='100%'
         />
@@ -47,21 +51,21 @@ class SignUp extends React.PureComponent {
             block='45%'
             icon='facebook'
             title='  FACEBOOK'
-            onClick={()=>console.log('FB')}
+            onClick={()=>this.props.navigation.navigate('RequestForm')}
             variant='fb'
           />
           <Button 
             block='45%'
             icon='googlePlus'
             title='  GOOGLE PLUS'
-            onClick={()=>console.log('G')}
+            onClick={()=>this.props.navigation.navigate('BloodRequest')}
             variant='gp'
           />
         </SocialButtons>
         <Button 
           block='100%'
           title='Already Account'
-          onClick={()=>console.log('already account')}
+          onClick={()=> this.props.navigation.navigate('SignIn')}
           variant='grey'
         />
       </StyledView>
