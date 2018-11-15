@@ -35,7 +35,7 @@ class SignUp extends React.PureComponent {
         <Input secureTextEntry type='default' placeholder='Password' icon='lock'  />
         <Button 
           title='Sign Up'
-          onClick={()=>this.props.navigation.navigate('Settings')}
+          onClick={()=>this.props.navigation.toggleDrawer()}
           variant='default'
           block='100%'
         />
