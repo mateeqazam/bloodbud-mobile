@@ -6,6 +6,8 @@
 
 import React from 'react';
 import Checkbox from '../../widgets/Checkbox'
+import Button from '../../widgets/Button'
+import { createStackNavigator } from 'react-navigation'
 
 import {
   MainView,
@@ -13,8 +15,18 @@ import {
 } from './styles';
 
 class BloodGroup extends React.PureComponent {
-  static navigationOptions = {
-    title: 'Blood Group',
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Blood Group',
+      headerLeft: (
+        <Button
+        onClick={()=>navigation.toggleDrawer()}
+          title="Menu"
+          color="#fff"
+        />
+      ),
+    }
   }
 
   showType(type,check){
@@ -42,5 +54,6 @@ class BloodGroup extends React.PureComponent {
     );
   }
 }
-
-export default BloodGroup;
+export default createStackNavigator({
+  BloodGroup,
+})

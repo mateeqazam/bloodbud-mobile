@@ -16,28 +16,7 @@ import BloodGroup from '../../components/views/BloodGroup'
 import BloodRequest from '../../components/views/BloodRequest'
 import RequestForm from '../../components/views/RequestForm'
 
-const SideMenu = require('react-native-side-menu');
-
-class ContentView extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+Control+Z for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const RootStack = createStackNavigator(
+const RootStack1 = createStackNavigator(
   {
     SignUp,
     SignIn,
@@ -51,11 +30,10 @@ const RootStack = createStackNavigator(
   }
 )
 
-const RootStack1 = createBottomTabNavigator(
+const RootStack = createBottomTabNavigator(
   {
     RequestForm,
     BloodRequest,
-    BloodGroup,
     Settings,
   },
   {
@@ -82,12 +60,12 @@ const RootStack1 = createBottomTabNavigator(
 )
 
 const MyApp = createDrawerNavigator({
-  SignUp,
-  SignIn,
+  Home:SignUp,
   BloodRequest,
   BloodGroup,
-  'Request Form':RootStack1,
+  'Request Form':RootStack,
   Settings,
+  'Logout':SignIn,
 })
 
 class App extends React.Component {
@@ -118,16 +96,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <MyApp />
       </ThemeProvider>
-    );
-
-    // return (
-    //   <View>
-    //     <Text textTransform="uppercase">Sample Text</Text>
-    //     <Text fontWeight="bold">Sample Text</Text>
-    //     <Icon name="user" color="red" fontSize={24} />
-    //     <TextInput iconLeft="user" iconRight="eye" name="username" placeholder="Name" />
-    //   </View>
-    // );
+    )
   }
 }
 

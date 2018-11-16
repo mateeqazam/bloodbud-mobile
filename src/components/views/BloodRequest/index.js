@@ -9,6 +9,7 @@ import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
+import { createStackNavigator } from 'react-navigation'
 
 import {
   MainView,
@@ -21,8 +22,18 @@ import {
 } from './styles';
 
 class BloodRequest extends React.PureComponent {
-  static navigationOptions = {
-    title: 'Blood Request',
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Blood Request',
+      headerLeft: (
+        <Button
+        onClick={()=>navigation.toggleDrawer()}
+          title="Menu"
+          color="#fff"
+        />
+      ),
+    }
   }
 
   render() {
@@ -42,7 +53,7 @@ class BloodRequest extends React.PureComponent {
               </Info>
           </InfoView> 
         </ProfileView>
-        <Button 
+        <Button
           title="Request"
           onClick={()=>console.log('request')}
           variant='default'
@@ -60,9 +71,6 @@ class BloodRequest extends React.PureComponent {
     );
   }
 }
-
-BloodRequest.propTypes = {
-
-};
-
-export default BloodRequest;
+export default createStackNavigator({
+  BloodRequest,
+})

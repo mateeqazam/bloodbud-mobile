@@ -6,11 +6,11 @@
 
 import React from 'react';
 import { View} from 'react-native';
-// import PropTypes from 'prop-types';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
 import Icon from '../../widgets/Icon'
 import Map from '../Map'
+import { createStackNavigator } from 'react-navigation'
 
 import {
   MainView,
@@ -20,8 +20,17 @@ import {
 
 class Settings extends React.PureComponent {
 
-  static navigationOptions = {
-    title: 'Settings',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Settings',
+      headerLeft: (
+        <Button
+        onClick={()=>navigation.toggleDrawer()}
+          title="Menu"
+          color="#fff"
+        />
+      ),
+    }
   }
 
   showElement(key,value,icon){
@@ -54,12 +63,10 @@ class Settings extends React.PureComponent {
         {this.showElement('Phone Number','090078601','phone')}
         {this.showElement('Change Password','*****','lock')}
       </MainView>
-    );
+    )
   }
 }
 
-Settings.propTypes = {
-
-};
-
-export default Settings;
+export default createStackNavigator({
+  Settings,
+})

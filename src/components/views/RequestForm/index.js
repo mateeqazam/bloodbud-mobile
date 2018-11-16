@@ -7,6 +7,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import Button from '../../widgets/Button'
+import { createStackNavigator } from 'react-navigation'
 
 import {
   MainView,
@@ -15,8 +16,18 @@ import {
 } from './styles'
 
 class RequestForm extends React.PureComponent {
-  static navigationOptions = {
-    title: 'Blood Request',
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Blood Request',
+      headerLeft: (
+        <Button
+        onClick={()=>navigation.toggleDrawer()}
+          title="Menu"
+          color="#fff"
+        />
+      ),
+    }
   }
 
   render() {
@@ -61,7 +72,7 @@ class RequestForm extends React.PureComponent {
 
         </View>
 
-        <Button 
+        <Button
           title="Request"
           onClick={()=>this.props.navigation.navigate('BloodGroup')}
           variant='default'
@@ -70,5 +81,6 @@ class RequestForm extends React.PureComponent {
     )
   }
 }
-
-export default RequestForm
+export default createStackNavigator({
+  RequestForm,
+})

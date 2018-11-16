@@ -8,6 +8,8 @@ import React from 'react';
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 import Text from '../../widgets/Text'
+import { View } from 'react-native';
+import { createStackNavigator } from 'react-navigation'
 
 import {
   StyledView,
@@ -20,12 +22,7 @@ import {
 
 class SignUp extends React.PureComponent {
 
-  static navigationOptions = {
-    title: 'Sign Up',
-  }
-
   render() {
-
     return (
       <MainView>
       <StyledView>
@@ -33,7 +30,7 @@ class SignUp extends React.PureComponent {
         <Input type='default' placeholder='Username' icon='user'  />
         <Input type='email-address' placeholder='Email Address' icon='envelope'  />
         <Input secureTextEntry type='default' placeholder='Password' icon='lock'  />
-        <Button 
+        <Button
           title='Sign Up'
           onClick={()=>this.props.navigation.toggleDrawer()}
           variant='default'
@@ -47,14 +44,14 @@ class SignUp extends React.PureComponent {
         </LineContainer>
 
         <SocialButtons>
-          <Button 
+          <Button
             block='45%'
             icon='facebook'
             title='  FACEBOOK'
             onClick={()=>this.props.navigation.navigate('RequestForm')}
             variant='fb'
           />
-          <Button 
+          <Button
             block='45%'
             icon='googlePlus'
             title='  GOOGLE PLUS'
@@ -62,7 +59,7 @@ class SignUp extends React.PureComponent {
             variant='gp'
           />
         </SocialButtons>
-        <Button 
+        <Button
           block='100%'
           title='Already Account'
           onClick={()=> this.props.navigation.navigate('SignIn')}
@@ -70,12 +67,9 @@ class SignUp extends React.PureComponent {
         />
       </StyledView>
       </MainView>
-    );
+    )
   }
 }
-
-SignUp.propTypes = {
-
-};
-
-export default SignUp;
+export default createStackNavigator({
+  SignUp,
+})
