@@ -1,27 +1,30 @@
 /**
 *
-* Settings
+* Profile
 *
 */
 
 import React from 'react';
 import { View} from 'react-native';
-import Text from '../../widgets/Text'
+import { createStackNavigator } from 'react-navigation'
 import Button from '../../widgets/Button'
 import Icon from '../../widgets/Icon'
-import { createStackNavigator } from 'react-navigation'
+import Text from '../../widgets/Text'
 
 import {
   MainView,
+  Container,
   ProfileView,
+  Pic,
+  Wrap,
   Wrapper
-} from './styles';
+} from './styles'
 
-class Settings extends React.PureComponent {
+class Profile extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Settings',
+      headerTitle: 'Profile',
       headerLeft: (
         <Button
         onClick={()=>navigation.toggleDrawer()}
@@ -45,18 +48,24 @@ class Settings extends React.PureComponent {
   }
 
   render() {
-
     return (
+      <Container>
+        <Wrap>
+          <Pic source={{uri: 'https://facebook.github.io/react/logo-og.png'}} />
+          <Text color="white">Ibrahim</Text>
+          <Text color="white">Rewards: 25</Text>
+        </Wrap>
       <MainView>
-        {this.showElement('Name','Ali','user')}
+      {this.showElement('Name','Ali','user')}
         {this.showElement('Email','ali@gmail.com','envelope')}
         {this.showElement('Phone Number','090078601','phone')}
         {this.showElement('Change Password','*****','lock')}
       </MainView>
-    )
+      </Container>
+    );
   }
 }
 
 export default createStackNavigator({
-  Settings,
+  Profile,
 })

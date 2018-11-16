@@ -24,7 +24,7 @@ import {
 class SignIn extends React.PureComponent {
 
   static navigationOptions = {
-    title: 'Sign In',
+    title: 'Sign In'
   }
 
   render() {

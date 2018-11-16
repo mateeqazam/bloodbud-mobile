@@ -15,25 +15,13 @@ import Settings from '../../components/views/Settings'
 import BloodGroup from '../../components/views/BloodGroup'
 import BloodRequest from '../../components/views/BloodRequest'
 import RequestForm from '../../components/views/RequestForm'
-
-const RootStack1 = createStackNavigator(
-  {
-    SignUp,
-    SignIn,
-    BloodRequest,
-    BloodGroup,
-    RequestForm,
-    Settings
-  },
-  {
-    initialRouteName: 'SignUp',
-  }
-)
+import Profile from '../../components/views/Profile'
+import Notification from '../../components/views/Notification'
 
 const RootStack = createBottomTabNavigator(
   {
-    RequestForm,
-    BloodRequest,
+    Profile,
+    Notification,
     Settings,
   },
   {
@@ -41,10 +29,12 @@ const RootStack = createBottomTabNavigator(
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'SignUp') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+        if (routeName === 'Profile') {
+          iconName = `ios-body${focused ? '' : '-outline'}`;
         } else if (routeName === 'Settings') {
           iconName = `ios-options${focused ? '' : '-outline'}`;
+        }else if (routeName === 'Notification') {
+          iconName = `ios-notifications${focused ? '' : '-outline'}`;
         }
 
         // You can return any component that you like here! We usually use an
@@ -60,11 +50,11 @@ const RootStack = createBottomTabNavigator(
 )
 
 const MyApp = createDrawerNavigator({
+  Profile:RootStack,
   Home:SignUp,
   BloodRequest,
   BloodGroup,
-  'Request Form':RootStack,
-  Settings,
+  RequestForm,
   'Logout':SignIn,
 })
 

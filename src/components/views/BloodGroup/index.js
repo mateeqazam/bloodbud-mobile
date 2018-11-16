@@ -22,8 +22,8 @@ class BloodGroup extends React.PureComponent {
       headerLeft: (
         <Button
         onClick={()=>navigation.toggleDrawer()}
-          title="Menu"
-          color="#fff"
+        icon='bars'
+        iconColor='black'
         />
       ),
     }
