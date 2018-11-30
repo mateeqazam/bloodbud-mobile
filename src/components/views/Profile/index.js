@@ -24,7 +24,7 @@ class Profile extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Profile',
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Profile</Text>,
       headerLeft: (
         <Button
         onClick={()=>navigation.toggleDrawer()}

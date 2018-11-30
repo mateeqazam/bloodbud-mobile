@@ -21,7 +21,7 @@ class Settings extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Settings',
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Settings</Text>,
       headerLeft: (
         <Button
         onClick={()=>navigation.toggleDrawer()}

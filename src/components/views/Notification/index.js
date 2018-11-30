@@ -24,7 +24,7 @@ class Notification extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Notification',
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Notification</Text>,
       headerLeft: (
         <Button
           icon='bars'

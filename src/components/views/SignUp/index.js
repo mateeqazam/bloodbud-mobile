@@ -22,10 +22,17 @@ import {
 
 class SignUp extends React.PureComponent {
 
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Sign In</Text>
+    }
+  }
+
   render() {
     return (
       <MainView>
       <StyledView>
+
         <Logo source={{uri: 'https://facebook.github.io/react/logo-og.png'}} />
         <Input type='default' placeholder='Username' icon='user'  />
         <Input type='email-address' placeholder='Email Address' icon='envelope'  />

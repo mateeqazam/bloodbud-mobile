@@ -23,8 +23,10 @@ import {
 
 class SignIn extends React.PureComponent {
 
-  static navigationOptions = {
-    title: 'Sign In'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Sign In</Text>
+    }
   }
 
   render() {

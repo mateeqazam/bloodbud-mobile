@@ -74,7 +74,7 @@ class RequestForm extends React.PureComponent {
 
         <Button
           title="Request"
-          onClick={()=>this.props.navigation.navigate('BloodGroup')}
+          onClick={()=>this.props.navigation.navigate('BloodRequest')}
           variant='default'
         />
       </MainView>

@@ -25,7 +25,7 @@ class BloodRequest extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Blood Request',
+      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Blood Request</Text>,
       headerLeft: (
         <Button
         onClick={()=>navigation.toggleDrawer()}
@@ -55,7 +55,7 @@ class BloodRequest extends React.PureComponent {
         </ProfileView>
         <Button
           title="Request"
-          onClick={()=>console.log('request')}
+          onClick={()=>this.props.navigation.navigate('BloodGroup')}
           variant='default'
         />
       </Wrapper>
