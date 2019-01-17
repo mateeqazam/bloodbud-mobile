@@ -11,9 +11,10 @@
     }
   },
   "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
+      "jsx": true
     }
   },
   "extends" : [
@@ -24,7 +25,7 @@
   ],
   "rules" : {
     "arrow-body-style" : 1,
-    "class-methods-use-this": 0,
-    "import/no-unresolved": 1
+    "react/prop-types": 0,
+    "global-require": 0
   }
 }

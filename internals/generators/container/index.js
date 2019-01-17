@@ -7,6 +7,7 @@
 'use strict';
 
 const componentExists = require('../utils/componentExists');
+
 const containerExists = componentExists.containerExists;
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
       name: 'name',
       message: 'What should it be called?',
       default: 'Button',
-      validate: value => {
+      validate: (value) => {
         if (/.+/.test(value)) {
           return containerExists(value)
             ? 'A container with this name already exists'
@@ -35,7 +36,7 @@ module.exports = {
       },
     },
   ],
-  actions: data => {
+  actions: (data) => {
     // Generate index.js and styles.js
     let componentTemplate;
 
@@ -60,7 +61,7 @@ module.exports = {
     const actions = [
       {
         type: 'add',
-        path: '../../src/containers/{{properCase name}}/index.js',
+        path: '../../app/containers/{{properCase name}}/index.js',
         templateFile: componentTemplate,
         abortOnFail: true,
       },

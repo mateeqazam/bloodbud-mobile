@@ -7,6 +7,7 @@
 'use strict';
 
 const componentExists = require('../utils/componentExists');
+
 const componentViewExists = componentExists.viewExists;
 
 module.exports = {
@@ -24,7 +25,7 @@ module.exports = {
       name: 'name',
       message: 'What should it be called?',
       default: 'Button',
-      validate: value => {
+      validate: (value) => {
         if (/.+/.test(value)) {
           return componentViewExists(value)
             ? 'A component with this name already exists'
@@ -35,7 +36,7 @@ module.exports = {
       },
     },
   ],
-  actions: data => {
+  actions: (data) => {
     // Generate index.js and styles.js
     let componentTemplate;
 
@@ -60,13 +61,13 @@ module.exports = {
     const actions = [
       {
         type: 'add',
-        path: '../../src/components/views/{{properCase name}}/index.js',
+        path: '../../app/components/views/{{properCase name}}/index.js',
         templateFile: componentTemplate,
         abortOnFail: true,
       },
       {
         type: 'add',
-        path: '../../src/components/views/{{properCase name}}/styles.js',
+        path: '../../app/components/views/{{properCase name}}/styles.js',
         templateFile: './templates/styles.js.hbs',
         abortOnFail: true,
       },

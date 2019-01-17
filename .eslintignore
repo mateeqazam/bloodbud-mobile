@@ -1,4 +1,8 @@
-.expo
+android
 assets
+ios
 package.json
 node_modules
+
+package-lock.json
+package-native.json

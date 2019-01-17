@@ -7,10 +7,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const components = fs.readdirSync(path.join(__dirname, '../../../src/components'));
-const views = fs.readdirSync(path.join(__dirname, '../../../src/components/views'));
-const widgets = fs.readdirSync(path.join(__dirname, '../../../src/components/widgets'));
-const containers = fs.readdirSync(path.join(__dirname, '../../../src/containers'));
+const components = fs.readdirSync(path.join(__dirname, '../../../app/components'));
+const views = fs.readdirSync(path.join(__dirname, '../../../app/components/views'));
+const widgets = fs.readdirSync(path.join(__dirname, '../../../app/components/widgets'));
+const containers = fs.readdirSync(path.join(__dirname, '../../../app/containers'));
 
 function componentExists(comp) {
   return components.indexOf(comp) >= 0;
@@ -32,5 +32,5 @@ module.exports = {
   componentExists,
   viewExists,
   widgetExists,
-  containerExists
+  containerExists,
 };
