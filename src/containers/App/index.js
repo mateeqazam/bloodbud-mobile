@@ -5,16 +5,28 @@
 */
 
 import React from 'react';
-import { View } from 'react-native';
-// import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
+import { Font } from 'expo'
+import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from 'react-navigation'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import SignUp from '../../components/views/SignUp'
+import SignIn from '../../components/views/SignIn'
+import Settings from '../../components/views/Settings'
+import BloodGroup from '../../components/views/BloodGroup'
+import BloodRequest from '../../components/views/BloodRequest'
+import RequestForm from '../../components/views/RequestForm'
+import Profile from '../../components/views/Profile'
+import Notification from '../../components/views/Notification'
 
-import Text from 'bloodbud/src/components/widgets/Text';
-import Icon from 'bloodbud/src/components/widgets/Icon';
-import TextInput from 'bloodbud/src/components/widgets/TextInput';
 
-// import { ThemeProvider } from 'styled-components';
-// import { Font } from 'expo';
-// import AppComponent from '../../components/views/SampleComponent';
+const MyApp = createDrawerNavigator({
+  Notification,
+  Profile,
+  RequestForm,
+  SignUp,
+  Settings,
+  'Logout':SignIn,
+},{drawerBackgroundColor:'lightgrey'})
 
 class App extends React.Component {
   constructor(props) {
@@ -40,27 +52,12 @@ class App extends React.Component {
       },
     };
     if (this.state.loading) return null;
-
-    // return (
-    //   <ThemeProvider theme={theme}>
-    //     <AppComponent />
-    //   </ThemeProvider>
-    // );
-
     return (
-      <View>
-        <Text>Sample Text</Text>
-        <Text textTransform="uppercase">Sample Text</Text>
-        <Text fontWeight="bold">Sample Text</Text>
-        <Icon name="user" color="red" fontSize={24} />
-        <TextInput iconLeft="user" iconRight="eye" name="username" placeholder="Name" />
-      </View>
-    );
+      <ThemeProvider theme={theme}>
+        <MyApp />
+      </ThemeProvider>
+    )
   }
 }
-
-App.propTypes = {
-
-};
 
 export default App;

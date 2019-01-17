@@ -15,9 +15,10 @@ import { InputFieldWrapper, InputWrapper, StyledIcon } from './styles';
 class Input extends React.Component {
   render() {
     const { icon, type, placeholder, secureTextEntry } = this.props
+    //size={30}
     return (
       <InputFieldWrapper >
-        <Icon size={30} name={icon} />
+        <Icon  name={icon} />
         <InputWrapper
           secureTextEntry
           keyboardType={type}

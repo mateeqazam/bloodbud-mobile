@@ -9,12 +9,13 @@ import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 
 import { ButtonWrapper, TouchableOpacity } from './styles'
-import Text from '../../widgets/Text'
+import Text from '../Text'
+import Icon from '../Icon'
 
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, block } = this.props
+    const { onClick, title, variant, block, icon, iconColor } = this.props
 
     const color = variant === 'grey' ? 'black' : 'white'
     let bgColor = null
@@ -31,13 +32,18 @@ class Button extends React.Component {
       case 'default':
           bgColor = 'black'
           break;
+      case 'fb':
+          bgColor = '#3A64B7'
+          break;
+      case 'gp':
+          bgColor = '#FF4745'
+          break;
     }
-
-
     return (
       <TouchableOpacity block={block} onPress={()=>{onClick()}}>
         <ButtonWrapper bgColor={bgColor} >
-          <Text color={color}> {title} </Text>
+          {icon && <Icon color={iconColor || 'white'} name={icon} />}
+          <Text color={color}>{title}</Text>
         </ButtonWrapper>
       </TouchableOpacity>
     );

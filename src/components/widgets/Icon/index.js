@@ -11,14 +11,25 @@ import ViewPropTypes from 'bloodbud/src/config/ViewPropTypes';
 
 import parseStyles from './parseStyles';
 
+import styled, { css } from 'styled-components';
+
+export const Wrapper = styled.View`
+  marginTop:5px;
+`;
+
+
+
 function Icon(props) {
   if (!props || !Icons[props.name]) return null;
 
   const { name, style, ...restProps } = props;
   delete restProps.align;
   const styles = parseStyles(style, restProps);
+  // console.log('icons',Icons)
   return (
-    <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
+    <Wrapper>
+      <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
+    </Wrapper>
   );
 }
 
