@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "expo": "^27.0.1",
+    "expo-cli": "^2.6.0",
     "lodash": "^4.17.11",
     "plop": "^2.1.0",
     "prop-types": "^15.6.2",

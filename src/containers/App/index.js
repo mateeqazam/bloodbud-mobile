@@ -24,6 +24,7 @@ const MyApp = createDrawerNavigator({
   Profile,
   RequestForm,
   SignUp,
+  BloodGroup,
   Settings,
   'Logout':SignIn,
 },{drawerBackgroundColor:'lightgrey'})

@@ -36,6 +36,7 @@ class RequestForm extends React.PureComponent {
         <View>
           <Wrapper>
           <Dropdown
+          mode='dropdown'
           style={{ height: 50, width: '100%' }}
           onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
             <Dropdown.Item label="Select Blood Group" value="" />
