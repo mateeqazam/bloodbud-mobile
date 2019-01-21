@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "bloodbudmobile-20190121132254-authRole",
+            "UnauthRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "bloodbudmobile-20190121132254-deployment",
+            "UnauthRoleName": "bloodbudmobile-20190121132254-unauthRole",
+            "StackName": "bloodbudmobile-20190121132254",
+            "StackId": "arn:aws:cloudformation:us-east-1:264518292870:stack/bloodbudmobile-20190121132254/c0ce1df0-1d55-11e9-a6de-121b5b00f9e8"
+        }
+    }
+}

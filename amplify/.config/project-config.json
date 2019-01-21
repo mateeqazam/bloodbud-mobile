@@ -1,0 +1,20 @@
+{
+    "projectName": "bloodbudmobile",
+    "projectPath": "/home/zubair-haider/Projects/bloodbud-mobile",
+    "defaultEditor": "code",
+    "frontendHandler": {
+        "javascript": "/home/linuxbrew/.linuxbrew/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
+    },
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "/",
+            "DistributionDir": "/",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script start"
+        }
+    },
+    "providers": {
+        "awscloudformation": "/home/linuxbrew/.linuxbrew/lib/node_modules/@aws-amplify/cli/node_modules/amplify-provider-awscloudformation"
+    }
+}

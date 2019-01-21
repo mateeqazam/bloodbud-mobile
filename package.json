@@ -42,6 +42,8 @@
     "react-test-renderer": "16.6.3"
   },
   "dependencies": {
+    "aws-amplify": "^1.1.19",
+    "aws-amplify-react-native": "^2.1.7",
     "lodash": "^4.17.11",
     "plop": "^2.1.0",
     "prop-types": "^15.6.2",

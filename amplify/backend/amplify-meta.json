@@ -1,0 +1,35 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "bloodbudmobile-20190121132254-authRole",
+			"UnauthRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "bloodbudmobile-20190121132254-deployment",
+			"UnauthRoleName": "bloodbudmobile-20190121132254-unauthRole",
+			"StackName": "bloodbudmobile-20190121132254",
+			"StackId": "arn:aws:cloudformation:us-east-1:264518292870:stack/bloodbudmobile-20190121132254/c0ce1df0-1d55-11e9-a6de-121b5b00f9e8"
+		}
+	},
+	"auth": {
+		"cognito7f6e6912": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/bloodbudmobile-20190121132254-deployment/amplify-cfn-templates/auth/cognito7f6e6912-cloudformation-template.yml",
+				"logicalId": "authcognito7f6e6912"
+			},
+			"lastPushTimeStamp": "2019-01-21T08:48:11.289Z",
+			"output": {
+				"AppClientSecret": "mrrhenqoket4j4cl0bp9ae2k4al4maji2mh3i4fhoiu4vmfgcao",
+				"UserPoolId": "us-east-1_Lz9DecF86",
+				"AppClientIDWeb": "3egai2962nvc8k11gltgs34h5q",
+				"AppClientID": "5kkd4itrtlerebshdhsm8ntnpe",
+				"IdentityPoolId": "us-east-1:c524826b-6992-45f5-bef4-ce8ba3f22e28",
+				"IdentityPoolName": "cognito7f6e6912_identitypool_7f6e6912",
+				"UserPoolName": "cognito7f6e6912_userpool_7f6e6912"
+			},
+			"lastPushDirHash": "KtQ+EPfkTAWoF4eWvxIy1adgXNU="
+		}
+	}
+}
