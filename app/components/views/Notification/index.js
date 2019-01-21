@@ -46,14 +46,13 @@ class Notification extends React.PureComponent {
       right: 0,
       bottom: 0,
     };
-    const {user:{username}} = Auth
-
+    let user = Auth && Auth.user ? Auth.user : ''
     return (
       <Container>
         {/* <Map mapStyle={mapStyle} /> */}
         <Wrap>
           <Pic source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
-          <Text>{username}</Text>
+          <Text>{user ? user.username : ''}</Text>
           <Text>Need AB+ Blood Group</Text>
         </Wrap>
 
@@ -88,4 +87,4 @@ Notification.propTypes = {
 
 };
 
-export default withAuthenticator(Notification)
+export default (Notification)

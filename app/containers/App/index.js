@@ -19,11 +19,51 @@ import BloodRequest from '../../components/views/BloodRequest';
 import RequestForm from '../../components/views/RequestForm';
 import Profile from '../../components/views/Profile';
 import Notification from '../../components/views/Notification';
+import { Text } from 'react-native';
+
+import { withAuthenticator } from 'aws-amplify-react-native'
+
 
 import Amplify, { Auth } from 'aws-amplify'
 import awsconfig from '../../../aws-exports';
 Auth.configure(awsconfig);
 
+
+const PageOne = () => {
+  // alert('test')
+  Auth.signOut().then(data => {
+    console.log('this: ', this);
+
+    this.props.onStateChange('signIn',{})
+  })
+  return <Notification />
+  
+}
+
+// const PageOne = async () => {
+//   // alert('test')
+//   Auth.signOut().then(()=>{
+//     console.log('this: ', this);
+//   }).catch((e)=>
+//   console.log('e: ', e)
+//   )
+//   console.log('app: ', app);
+
+//   return (
+//     {}
+//   )
+// }
+
+class PageOne extends React.Component {
+  test(){
+    alert('1')
+  }
+render(){
+  return (
+    <Text></Text>
+  )
+}
+}
 
 const MyApp = createDrawerNavigator(
   {
@@ -31,11 +71,7 @@ const MyApp = createDrawerNavigator(
     Profile,
     RequestForm,
     Settings,
-    Logout: () => { 
-    
-    
-      Auth.signOut().then(data => this.props.onStateChange('signIn',{}))
-    },
+    Logout: Notification,
   },
   { drawerBackgroundColor: 'lightgrey' },
 );
@@ -50,8 +86,18 @@ const theme = {
 };
 
 class App extends React.Component {
+
+  async getUser(){
+
+  }
+
   render() {
-    console.log('this: ', this);
+console.log('Auth: ', Auth);
+console.log('Auth: ', Auth.AuthClass);
+// if(!Auth.user){
+//   return <Notification />
+// }
+
     return (
       <ThemeProvider theme={theme}>
         <MyApp />
@@ -60,4 +106,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuthenticator(App);

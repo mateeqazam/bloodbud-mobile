@@ -20,6 +20,11 @@ import {
   Wrapper
 } from './styles'
 
+import { Auth } from 'aws-amplify'
+import awsconfig from '../../../../aws-exports';
+Auth.configure(awsconfig);
+
+
 class Profile extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
@@ -42,11 +47,13 @@ class Profile extends React.PureComponent {
         <Icon name={icon} />
         <Text>{`  ${key}`}</Text>
       </ProfileView>
-      <Text>{value}</Text>
+      <Text>{'value'}</Text>
     </Wrapper>
     )
   }
 
+
+  
   render() {
     return (
       <Container>
