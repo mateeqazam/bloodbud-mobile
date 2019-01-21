@@ -20,14 +20,22 @@ import RequestForm from '../../components/views/RequestForm';
 import Profile from '../../components/views/Profile';
 import Notification from '../../components/views/Notification';
 
+import Amplify, { Auth } from 'aws-amplify'
+import awsconfig from '../../../aws-exports';
+Auth.configure(awsconfig);
+
+
 const MyApp = createDrawerNavigator(
   {
-    Notification,
+    Notification: createStackNavigator({ Notification }),
     Profile,
     RequestForm,
-    SignUp,
     Settings,
-    Logout: SignIn,
+    Logout: () => { 
+    
+    
+      Auth.signOut().then(data => this.props.onStateChange('signIn',{}))
+    },
   },
   { drawerBackgroundColor: 'lightgrey' },
 );

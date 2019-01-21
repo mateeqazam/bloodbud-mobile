@@ -11,7 +11,12 @@ import { createStackNavigator } from 'react-navigation';
 import Button from '../../widgets/Button';
 import Icon from '../../widgets/Icon';
 import Text from '../../widgets/Text';
-// import Map from '../Map';
+import Map from '../Map';
+
+import { withAuthenticator } from 'aws-amplify-react-native'
+import { Auth } from 'aws-amplify'
+import awsconfig from '../../../../aws-exports';
+Auth.configure(awsconfig);
 
 import {
   Container,
@@ -41,13 +46,14 @@ class Notification extends React.PureComponent {
       right: 0,
       bottom: 0,
     };
+    const {user:{username}} = Auth
 
     return (
       <Container>
         {/* <Map mapStyle={mapStyle} /> */}
         <Wrap>
           <Pic source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
-          <Text>Ibrahim</Text>
+          <Text>{username}</Text>
           <Text>Need AB+ Blood Group</Text>
         </Wrap>
 
@@ -82,6 +88,4 @@ Notification.propTypes = {
 
 };
 
-export default createStackNavigator({
-  Notification,
-});
+export default withAuthenticator(Notification)
