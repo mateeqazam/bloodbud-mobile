@@ -22,48 +22,9 @@ import Notification from '../../components/views/Notification';
 import { Text } from 'react-native';
 
 import { withAuthenticator } from 'aws-amplify-react-native'
-
-
-import Amplify, { Auth } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import awsconfig from '../../../aws-exports';
 Auth.configure(awsconfig);
-
-
-const PageOne = () => {
-  // alert('test')
-  Auth.signOut().then(data => {
-    console.log('this: ', this);
-
-    this.props.onStateChange('signIn',{})
-  })
-  return <Notification />
-  
-}
-
-// const PageOne = async () => {
-//   // alert('test')
-//   Auth.signOut().then(()=>{
-//     console.log('this: ', this);
-//   }).catch((e)=>
-//   console.log('e: ', e)
-//   )
-//   console.log('app: ', app);
-
-//   return (
-//     {}
-//   )
-// }
-
-class PageOne extends React.Component {
-  test(){
-    alert('1')
-  }
-render(){
-  return (
-    <Text></Text>
-  )
-}
-}
 
 const MyApp = createDrawerNavigator(
   {
@@ -71,7 +32,6 @@ const MyApp = createDrawerNavigator(
     Profile,
     RequestForm,
     Settings,
-    Logout: Notification,
   },
   { drawerBackgroundColor: 'lightgrey' },
 );
@@ -92,12 +52,6 @@ class App extends React.Component {
   }
 
   render() {
-console.log('Auth: ', Auth);
-console.log('Auth: ', Auth.AuthClass);
-// if(!Auth.user){
-//   return <Notification />
-// }
-
     return (
       <ThemeProvider theme={theme}>
         <MyApp />

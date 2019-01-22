@@ -15,8 +15,6 @@ import Map from '../Map';
 
 import { withAuthenticator } from 'aws-amplify-react-native'
 import { Auth } from 'aws-amplify'
-import awsconfig from '../../../../aws-exports';
-Auth.configure(awsconfig);
 
 import {
   Container,
@@ -73,7 +71,12 @@ class Notification extends React.PureComponent {
 
         <Button
           title='Refer'
-          onClick={() => console.log('Refer')}
+          onClick={() => {
+            Auth.signOut().then(data => {
+              console.log('this: ',data, this);
+              this.props.onStateChange('signIn',{})
+            })
+          }}
           block='30%'
           variant='default'
         />
@@ -87,4 +90,4 @@ Notification.propTypes = {
 
 };
 
-export default (Notification)
+export default withAuthenticator(Notification)
