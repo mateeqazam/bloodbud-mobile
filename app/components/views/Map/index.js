@@ -9,8 +9,10 @@ import { StyleSheet } from 'react-native'
 import MapView, { PROVIDER_GOOGLE,Marker } from 'react-native-maps'
 
 import {
-  MainView
+  MainView,
+  customMapStyle
 } from './styles'
+
 const googleApiKey = 'AIzaSyB94Glgain12Qqgn9Vzj4nwkQiiFKWIqx8'
 
 class Map extends React.PureComponent {
@@ -30,18 +32,17 @@ class Map extends React.PureComponent {
           latitudeDelta: 0.0122,
           longitudeDelta: 0.0121
         }
-
         this.setState({region, markerPoint: region})
-        this.getLocationDetails(position.coords.latitude,position.coords.longitude)
+        const location = `${position.coords.latitude},${position.coords.longitude}`
+        this.getLocationDetails(location)
       },
       (error) => { console.log(error); },
       {  enableHighAccuracy: true,timeout: 30000 }
     )
   }
 
-  getLocationDetails(latitude, longitude) {
-    let location = [];
-    url='https://maps.googleapis.com/maps/api/geocode/json?address='+ latitude + ',' +longitude + '&key=' +  googleApiKey
+  getLocationDetails(location) {
+    url=`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`
     fetch(url)
     .then((response) => response.json())
     .then((responseJson) => {
@@ -50,91 +51,10 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const {mapStyle} = this.props
+    const {mapStyle,locationSearch} = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
-
-    var mapStyle1 = [
-      {
-        "featureType": "poi.attraction",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff3bec"
-          },
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.business",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.medical",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "color": "#ff3b53"
-          },
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.medical",
-        "elementType": "geometry.stroke",
-        "stylers": [
-          {
-            "weight": 2.5
-          }
-        ]
-      },
-      {
-        "featureType": "poi.park",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.place_of_worship",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.school",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      },
-      {
-        "featureType": "poi.sports_complex",
-        "elementType": "geometry.fill",
-        "stylers": [
-          {
-            "visibility": "on"
-          }
-        ]
-      }
-    ]
 
     const {region} = this.state
     return (
@@ -149,7 +69,7 @@ class Map extends React.PureComponent {
         showsUserLocation={true}
         zoomControlEnabled={true}
         zoomEnabled = {true}
-        customMapStyle={mapStyle1}
+        customMapStyle={customMapStyle}
         ref={map => { this.setState({map}) }}
         onPoiClick={e=>{
           console.log('poi',e)
@@ -161,7 +81,10 @@ class Map extends React.PureComponent {
           }
           this.setState({markerPoint})
         }}
-        onRegionChangeComplete={e=>this.getLocationDetails(e.latitude,e.longitude)}
+        onRegionChangeComplete={e=>{
+          const location = `${e.latitude} , ${e.longitude}`
+          this.getLocationDetails(location)
+        }}
       >
       <Marker coordinate={this.state.markerPoint}
       title={`${this.state.markerPoint.latitude}`}

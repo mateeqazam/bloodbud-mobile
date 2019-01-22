@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
-export const MainView = styled.View`
+export const MainView = styled.ScrollView`
     padding:10px;
-    marginTop:50px;
-    justify-content:space-between;
-    flex:1;
 `
 
 export const Wrapper = styled.View`
@@ -13,5 +10,4 @@ export const Wrapper = styled.View`
 `
 
 export const Dropdown = styled.Picker`
-padding:0;
 `
