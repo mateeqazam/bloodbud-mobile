@@ -47,7 +47,7 @@ class Notification extends React.PureComponent {
     let user = Auth && Auth.user ? Auth.user : ''
     return (
       <Container>
-        {/* <Map mapStyle={mapStyle} /> */}
+        {<Map mapStyle={mapStyle} />}
         <Wrap>
           <Pic source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
           <Text>{user ? user.username : ''}</Text>
