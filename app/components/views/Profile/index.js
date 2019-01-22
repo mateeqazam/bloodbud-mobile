@@ -20,10 +20,8 @@ import {
   Wrapper
 } from './styles'
 
+import { withAuthenticator } from 'aws-amplify-react-native'
 import { Auth } from 'aws-amplify'
-import awsconfig from '../../../../aws-exports';
-Auth.configure(awsconfig);
-
 
 class Profile extends React.PureComponent {
 
@@ -47,7 +45,7 @@ class Profile extends React.PureComponent {
         <Icon name={icon} />
         <Text>{`  ${key}`}</Text>
       </ProfileView>
-      <Text>{'value'}</Text>
+      <Text>{value}</Text>
     </Wrapper>
     )
   }
@@ -68,11 +66,27 @@ class Profile extends React.PureComponent {
         {this.showElement('Phone Number','090078601','phone')}
         {this.showElement('Change Password','*****','lock')}
       </MainView>
+
+
+        <Button
+          title='Logout'
+          onClick={() => {
+            Auth.signOut().then(data => {
+              this.props.onStateChange('signIn',{})
+            })
+          }}
+          block='30%'
+          variant='default'
+        />
+
       </Container>
     );
   }
 }
 
-export default createStackNavigator({
-  Profile,
-})
+export default withAuthenticator(Profile)
+
+
+// export default createStackNavigator({
+//   Profile,
+// })

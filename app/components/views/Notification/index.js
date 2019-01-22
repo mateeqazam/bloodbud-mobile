@@ -72,10 +72,12 @@ class Notification extends React.PureComponent {
         <Button
           title='Refer'
           onClick={() => {
-            Auth.signOut().then(data => {
-              console.log('this: ',data, this);
+            Auth.signOut().then(() => {
+              console.log('this: ', this);
               this.props.onStateChange('signIn',{})
-            })
+            }).catch(e => {
+							console.log('e: ', e);
+						})
           }}
           block='30%'
           variant='default'
@@ -85,9 +87,5 @@ class Notification extends React.PureComponent {
     );
   }
 }
-
-Notification.propTypes = {
-
-};
 
 export default withAuthenticator(Notification)

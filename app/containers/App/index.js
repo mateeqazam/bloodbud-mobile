@@ -8,7 +8,6 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
   createStackNavigator,
-  createBottomTabNavigator,
   createDrawerNavigator,
 } from 'react-navigation';
 import SignUp from '../../components/views/SignUp';
@@ -21,6 +20,8 @@ import Profile from '../../components/views/Profile';
 import Notification from '../../components/views/Notification';
 import { Text } from 'react-native';
 
+
+
 import { withAuthenticator } from 'aws-amplify-react-native'
 import { Auth } from 'aws-amplify'
 import awsconfig from '../../../aws-exports';
@@ -29,7 +30,7 @@ Auth.configure(awsconfig);
 const MyApp = createDrawerNavigator(
   {
     Notification: createStackNavigator({ Notification }),
-    Profile,
+    Profile: createStackNavigator({ Profile }),
     RequestForm,
     Settings,
   },
@@ -47,10 +48,6 @@ const theme = {
 
 class App extends React.Component {
 
-  async getUser(){
-
-  }
-
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -60,4 +57,5 @@ class App extends React.Component {
   }
 }
 
-export default withAuthenticator(App);
+export default (MyApp);
+// export default   createStackNavigator ({ withAuthenticator(App) })
