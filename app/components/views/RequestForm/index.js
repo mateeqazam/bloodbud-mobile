@@ -37,26 +37,19 @@ class RequestForm extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      locationSearch:''
+      bloodGroup: '',
+      bloodUnit: ''
     }
   }
 
-  onLocationChange = locationSearch => {
-    this.setState({locationSearch})
-  }
+  validateForm = () => {
+    const { bloodGroup, bloodUnit, relation, info} = this.state
+    if(!bloodGroup) return alert('Select Group')
+    if(!bloodUnit) return alert('Select blood unit')
+    if(!relation) return alert('relation info is required')
+    if(!info) return alert('select a location')
 
-
-  getLocationDetails = () => {
-    const googleApiKey = 'AIzaSyB94Glgain12Qqgn9Vzj4nwkQiiFKWIqx8'
-    const loc = this.state.locationSearch
-    if(!loc) return false
-    const url=`https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${googleApiKey}`
-    console.log('url: ', url);
-    fetch(url)
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log('responseJson: ', responseJson);
-    });
+    alert(`you selected ${bloodGroup} blood group with ${bloodUnit} unit of blood, and relation info you shared is :  ${relation}, location you shared is : ${info} `)
   }
 
   render() {
@@ -69,59 +62,47 @@ class RequestForm extends React.PureComponent {
       right: 0,
       bottom: 0,
     };
-
+    const { bloodGroup, bloodUnit} = this.state
     return (
       <MainView>
-        <Input type='default' placeholder='Search Location' onChangeText={this.onLocationChange} />
-
-        <Button
-          title='Search1'
-          onClick={this.getLocationDetails}
-          variant='grey'
-        />
-        {<Map mapStyle={mapStyle} />}
+        {<Map mapStyle={mapStyle} locationInfo={info => this.setState({info})} />}
         <View>
           <Wrapper>
-          <Dropdown
-          style={{ height: 50, width: '100%' }}
-          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-            <Dropdown.Item label="Select Blood Group" value="" />
-            <Dropdown.Item label="Java" value="java" />
-          </Dropdown>
+            <Dropdown
+              selectedValue = {bloodGroup}
+              style={{ height: 50, width: '100%' }}
+              onValueChange={bloodGroup => this.setState({bloodGroup}) }>
+              <Dropdown.Item label="Select Blood Group" value="" />
+              <Dropdown.Item label="A -ve" value="A -ve" />
+              <Dropdown.Item label="A +ve" value="A +ve" />
+              <Dropdown.Item label="B +ve" value="B +ve" />
+              <Dropdown.Item label="B -ve" value="B -ve" />
+              <Dropdown.Item label="AB +ve" value="AB +ve" />
+              <Dropdown.Item label="AB -ve" value="AB -ve" />
+              <Dropdown.Item label="O +ve" value="O +ve" />
+              <Dropdown.Item label="O -ve" value="O -ve" />
+            </Dropdown>
           </Wrapper>
           <Wrapper>
           <Dropdown
-          selectedValue={"Java"}
-          style={{ height: 50, width: '100%' }}
-          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-            <Dropdown.Item label="Select Blood Type" value="" />
-            <Dropdown.Item label="Java" value="java" />
+            selectedValue={bloodUnit}
+            style={{ height: 50, width: '100%' }}
+            onValueChange={bloodUnit => this.setState({bloodUnit})}
+            >
+              <Dropdown.Item label="Select Blood Unit" value="" />
+              <Dropdown.Item label="1" value="1" />
+              <Dropdown.Item label="2" value="2" />
+              <Dropdown.Item label="3" value="3" />
           </Dropdown>
           </Wrapper>
           <Wrapper>
-          <Dropdown
-          selectedValue={"Java"}
-          style={{ height: 50, width: '100%' }}
-          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-            <Dropdown.Item label="Select Blood Unit" value="" />
-            <Dropdown.Item label="JavaScript" value="js" />
-          </Dropdown>
-          <Wrapper>
+          <Input type='default' placeholder='Relation with needy person' onChangeText={ relation => this.setState({relation })} />
           </Wrapper>
-          <Dropdown
-          selectedValue={"Java"}
-          style={{ height: 50, width: '100%' }}
-          onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
-            <Dropdown.Item label="Relation with needy person" value="" />
-            <Dropdown.Item label="Java" value="java" />
-          </Dropdown>
-          </Wrapper>
-
         </View>
 
         <Button
           title="Request"
-          onClick={()=>this.props.navigation.navigate('BloodRequest')}
+          onClick={this.validateForm}
           variant='default'
         />
       </MainView>

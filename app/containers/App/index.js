@@ -27,11 +27,14 @@ import { Auth } from 'aws-amplify'
 import awsconfig from '../../../aws-exports';
 Auth.configure(awsconfig);
 
+
+
+
 const MyApp = createDrawerNavigator(
   {
+    RequestForm,
     Notification: createStackNavigator({ Notification }),
     Profile: createStackNavigator({ Profile }),
-    RequestForm,
     Settings,
   },
   { drawerBackgroundColor: 'lightgrey' },

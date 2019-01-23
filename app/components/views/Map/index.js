@@ -6,7 +6,11 @@
 
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import MapView, { PROVIDER_GOOGLE,Marker } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Animated } from 'react-native-maps'
+
+
+import Button from '../../widgets/Button'
+import Input from '../../widgets/Input'
 
 import {
   MainView,
@@ -15,24 +19,29 @@ import {
 
 const googleApiKey = 'AIzaSyB94Glgain12Qqgn9Vzj4nwkQiiFKWIqx8'
 
+
+const latitudeDelta = 0.0122
+const longitudeDelta = 0.0121
+
 class Map extends React.PureComponent {
 
   constructor(props) {
     super(props)
     this.state = {
+      locationSearch:''
     }
   }
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const region = {
+        const region = new AnimatedRegion({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
-          latitudeDelta: 0.0122,
-          longitudeDelta: 0.0121
-        }
-        this.setState({region, markerPoint: region})
+          latitudeDelta,
+          longitudeDelta
+        })
+        this.setState({region , markerPoint: position.coords})
         const location = `${position.coords.latitude},${position.coords.longitude}`
         this.getLocationDetails(location)
       },
@@ -45,53 +54,70 @@ class Map extends React.PureComponent {
     url=`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${googleApiKey}`
     fetch(url)
     .then((response) => response.json())
-    .then((responseJson) => {
-      console.log('responseJson: ', responseJson);
+    .then((resp) => {
+      if(resp && resp.results && resp.results[0]){
+        let loc = resp.results[0].geometry.location
+        loc.title = resp.results[0].formatted_address
+        this.props.locationInfo(loc.title)
+        const point = {
+          latitude:loc.lat,
+          longitude:loc.lng,
+          title:loc.title,
+          latitudeDelta,
+          longitudeDelta,
+        }
+        console.log('point: ', point);
+        this.state.region.setValue(point)
+        this.setState({markerPoint: point, regionChanged: true})
+      }
     });
   }
 
+  onRegionChange = region => {
+    if(this.state.regionChanged) return this.setState({regionChanged: false})
+    this.state.region.setValue(region);
+    this.setState({markerPoint: region })
+  }
+
+  getPoint = point => {
+    this.getLocationDetails( `${point.latitude},${point.longitude}` )
+  }
+
   render() {
-    const {mapStyle,locationSearch} = this.props
+    const {mapStyle} = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
 
-    const {region} = this.state
+    const {region, markerPoint} = this.state
     return (
       <MainView>
-      { region && <MapView
-        apikey={googleApiKey}
-        provider={PROVIDER_GOOGLE}
-        style={ styles.map }
-        initialRegion={this.state.region}
-        showsTraffic={true}
-        showsMyLocationButton={true}
-        showsUserLocation={true}
-        zoomControlEnabled={true}
-        zoomEnabled = {true}
-        customMapStyle={customMapStyle}
-        ref={map => { this.setState({map}) }}
-        onPoiClick={e=>{
-          console.log('poi',e)
-        }}
-        onRegionChange={e=>{
-          let markerPoint = {
-            latitude:e.latitude,
-            longitude:e.longitude
-          }
-          this.setState({markerPoint})
-        }}
-        onRegionChangeComplete={e=>{
-          const location = `${e.latitude} , ${e.longitude}`
-          this.getLocationDetails(location)
-        }}
-      >
-      <Marker coordinate={this.state.markerPoint}
-      title={`${this.state.markerPoint.latitude}`}
-      onDragEnd={e=>console.log('chnage',e)}
-      >
-</Marker>
-      </MapView>}
+
+        <Input type='default' placeholder='Search Location' onChangeText={ locationSearch => this.setState({locationSearch })} />
+
+        <Button
+          title='Search'
+          onClick={() => this.getLocationDetails(this.state.locationSearch)}
+          variant='grey'
+        />
+
+      { region && 
+        <Animated
+          region={this.state.region}
+          customMapStyle={customMapStyle}
+          style={ styles.map }
+          onRegionChangeComplete={this.onRegionChange}
+
+          onPoiClick={e => this.getPoint(e.nativeEvent.coordinate)}
+        >
+            <Marker 
+              coordinate={markerPoint}
+              draggable
+              title={markerPoint.title || ''}
+              onDragEnd={ e => this.getPoint(e.nativeEvent.coordinate) } 
+            />
+          </Animated>
+      }
     </MainView>
     );
   }
