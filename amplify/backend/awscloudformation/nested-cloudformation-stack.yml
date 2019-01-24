@@ -84,8 +84,8 @@
 				"TemplateURL": "https://s3.amazonaws.com/bloodbudmobile-20190121132254-deployment/amplify-cfn-templates/auth/cognito7f6e6912-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "cognito7f6e6912_identitypool_7f6e6912",
-					"allowUnauthenticatedIdentities": false,
-					"thirdPartyAuth": false,
+					"allowUnauthenticatedIdentities": true,
+					"thirdPartyAuth": true,
 					"lambdaLogPolicy": "cognito7f6e6912_lambda_log_policy",
 					"openIdLambdaRoleName": "cognito7f6e6912_openid_lambda_role",
 					"openIdRolePolicy": "cognito7f6e6912_openid_pass_role_policy",
@@ -100,8 +100,8 @@
 					"policyName": "cognito7f6e6912-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
-					"emailVerificationSubject": "Your verification code",
-					"emailVerificationMessage": "Your verification code is {####}",
+					"emailVerificationSubject": "321",
+					"emailVerificationMessage": "{####}",
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
@@ -118,13 +118,17 @@
 					"userpoolClientLogPolicy": "cognito7f6e6912_userpoolclient_lambda_log_policy",
 					"userpoolClientLambdaPolicy": "cognito7f6e6912_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
-					"useDefault": "default",
+					"useDefault": "manual",
 					"unAuthRoleName": "bloodbudmobile-20190121132254-unauthRole",
 					"authRoleName": "bloodbudmobile-20190121132254-authRole",
 					"unAuthRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-unauthRole",
 					"authRoleArn": "arn:aws:iam::264518292870:role/bloodbudmobile-20190121132254-authRole",
 					"resourceName": "cognito7f6e6912",
-					"authSelections": "identityPoolAndUserPool"
+					"authSelections": "identityPoolAndUserPool",
+					"authProviders": "graph.facebook.com,accounts.google.com",
+					"facebookAppId": "1117097161805338",
+					"googleClientId": "71522948673-i7aj9if65vljvr3mlav1j7milqfffpg8.apps.googleusercontent.com",
+					"selectedParties": "{\"graph.facebook.com\":\"1117097161805338\",\"accounts.google.com\":\"71522948673-i7aj9if65vljvr3mlav1j7milqfffpg8.apps.googleusercontent.com\"}"
 				}
 			}
 		}

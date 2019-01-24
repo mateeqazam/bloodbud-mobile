@@ -127,6 +127,18 @@ Parameters:
             
   authSelections:
     Type: String
+                  
+  authProviders:
+    Type: CommaDelimitedList
+      
+  facebookAppId:
+    Type: String
+            
+  googleClientId:
+    Type: String
+            
+  selectedParties:
+    Type: String
           
 Resources:
   
@@ -337,6 +349,15 @@ Resources:
             - cognito-idp.${region}.amazonaws.com/${client}
             - { region: !Ref "AWS::Region",  client: !Ref UserPool}
             
+      SupportedLoginProviders: 
+        
+          
+          graph.facebook.com: '1117097161805338'
+                  
+          
+          accounts.google.com: '71522948673-i7aj9if65vljvr3mlav1j7milqfffpg8.apps.googleusercontent.com'
+                   
+      
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
        
        
@@ -378,8 +399,14 @@ Outputs :
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
   
+  
+  GoogleWebClient:
+    Value: 71522948673-i7aj9if65vljvr3mlav1j7milqfffpg8.apps.googleusercontent.com
    
    
   
+  
+  FacebookWebClient:
+    Value: 1117097161805338
    
   

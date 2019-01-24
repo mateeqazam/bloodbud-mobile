@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/bloodbudmobile-20190121132254-deployment/amplify-cfn-templates/auth/cognito7f6e6912-cloudformation-template.yml",
 				"logicalId": "authcognito7f6e6912"
 			},
-			"lastPushTimeStamp": "2019-01-21T08:48:11.289Z",
+			"lastPushTimeStamp": "2019-01-23T13:51:43.296Z",
 			"output": {
 				"AppClientSecret": "mrrhenqoket4j4cl0bp9ae2k4al4maji2mh3i4fhoiu4vmfgcao",
 				"UserPoolId": "us-east-1_Lz9DecF86",
@@ -27,9 +27,12 @@
 				"AppClientID": "5kkd4itrtlerebshdhsm8ntnpe",
 				"IdentityPoolId": "us-east-1:c524826b-6992-45f5-bef4-ce8ba3f22e28",
 				"IdentityPoolName": "cognito7f6e6912_identitypool_7f6e6912",
-				"UserPoolName": "cognito7f6e6912_userpool_7f6e6912"
+				"UserPoolName": "cognito7f6e6912_userpool_7f6e6912",
+				"GoogleWebClient": "71522948673-i7aj9if65vljvr3mlav1j7milqfffpg8.apps.googleusercontent.com",
+				"FacebookWebClient": "1117097161805338"
 			},
-			"lastPushDirHash": "KtQ+EPfkTAWoF4eWvxIy1adgXNU="
+			"lastPushDirHash": "o9W5042fSIXUCQEpY27icy3nNRA=",
+			"[object Object]": {}
 		}
 	}
 }
