@@ -71,10 +71,10 @@ class Map extends React.PureComponent {
     });
   }
 
-  onRegionChange = region => {
+  onRegionChange = point => {
     if(this.state.regionChanged) return this.setState({regionChanged: false})
-    this.state.region.setValue(region);
-    this.setState({markerPoint: region })
+    const region = new AnimatedRegion(point)
+    this.setState({markerPoint: point, region })
   }
 
   getPoint = point => {

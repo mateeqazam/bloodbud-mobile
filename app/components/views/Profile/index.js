@@ -12,6 +12,7 @@ import Icon from '../../widgets/Icon'
 import Text from '../../widgets/Text'
 import Input from '../../widgets/Input'
 import BloodGroup from '../../widgets/BloodGroup'
+import Modal from '../../widgets/Modal'
 import Slider from "react-native-slider";
 
 import {
@@ -48,6 +49,7 @@ class Profile extends React.PureComponent {
       bloodDonated: '',
       calendar: false,
       range: 20,
+      modalVisible: false,
       gender: ''
     }
   }
@@ -55,8 +57,8 @@ class Profile extends React.PureComponent {
   showElement(key,value,icon){
     return (
       <Wrapper onPress={()=>{
-        if(icon === 'calendar') return this.setState({[icon]: true})
-        alert(`Change ${key}`)
+          if(icon === 'calendar') return this.setState({[icon]: true})
+          this.setState({modalVisible: key})
         }}>
         <Icon fontSize={22} name={icon} />
         <InfoView>
@@ -74,10 +76,15 @@ class Profile extends React.PureComponent {
     this._hideDateTimePicker();
   };
 
+  toggleModal = modalVisible => {
+    this.setState({modalVisible})
+  }
+
   render() {
-    const { bloodGroup, gender, bloodDonated, calendar, range } = this.state
+    const { bloodGroup, gender, bloodDonated, calendar, range, modalVisible } = this.state
     return (
       <Container>
+
         {this.showElement('Name','Ali','user')}
         {this.showElement('Email','ali@gmail.com','envelope')}
         {this.showElement('Phone Number','090078601','phone')}
@@ -130,6 +137,10 @@ class Profile extends React.PureComponent {
           isVisible={calendar}
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
+        />
+        <Modal
+          toggleModal={this.toggleModal}
+          modalVisible={modalVisible}
         />
 
       </Container>

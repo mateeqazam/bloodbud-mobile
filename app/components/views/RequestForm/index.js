@@ -10,6 +10,7 @@ import Button from '../../widgets/Button'
 import { createStackNavigator } from 'react-navigation'
 import Input from '../../widgets/Input'
 import BloodGroup from '../../widgets/BloodGroup'
+import { withAuthenticator } from 'aws-amplify-react-native'
 
 import Map from '../Map';
 
@@ -106,6 +107,5 @@ class RequestForm extends React.PureComponent {
     )
   }
 }
-export default createStackNavigator({
-  RequestForm,
-})
+
+export default withAuthenticator(RequestForm)

@@ -23,8 +23,8 @@ import { Text } from 'react-native';
 const MyApp = createDrawerNavigator(
   {
     Profile: createStackNavigator({ Profile }),
-    RequestForm,
     Notification: createStackNavigator({ Notification }),
+    RequestForm: createStackNavigator({ RequestForm }),
   },
   { drawerBackgroundColor: 'lightgrey' },
 );
