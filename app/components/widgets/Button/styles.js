@@ -2,14 +2,15 @@ import styled, { css } from 'styled-components';
 
 export const ButtonWrapper = styled.View`
   flex-direction: row;
-  backgroundColor: ${props => props.bgColor || 'white'};
+  backgroundColor: ${props => props.bgColor || 'transparent'};
   padding: 10px;
+  ${props => !!props.marginLeft && css`marginLeft: ${props.marginLeft}`};
   borderRadius: 5px;
   justify-content: center;
 `
 
 export const TouchableOpacity = styled.TouchableOpacity`
-  padding-vertical: 10px;
+  paddingVertical: 10;
   ${props => !!props.block && css`width: ${props.block}`};
 `
 

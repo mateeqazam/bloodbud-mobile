@@ -15,10 +15,10 @@ import Icon from '../Icon'
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, block, icon, iconColor } = this.props
+    const { onClick, title, variant, block, icon, iconColor, marginLeft } = this.props
 
     const color = variant === 'grey' ? 'black' : 'white'
-    let bgColor = null
+    let { bgColor } = this.props
     switch(variant) {
       case 'primary':
           bgColor = 'red'
@@ -27,7 +27,7 @@ class Button extends React.Component {
           bgColor = 'green'
           break;
       case 'grey':
-          bgColor = '#DDDDDD'
+          bgColor = bgColor || '#DDDDDD'
           break;
       case 'default':
           bgColor = 'black'
@@ -40,13 +40,13 @@ class Button extends React.Component {
           break;
     }
     return (
-      <TouchableOpacity block={block} onPress={()=>{onClick()}}>
-        <ButtonWrapper bgColor={bgColor} >
-          {icon && <Icon color={iconColor || 'white'} name={icon} />}
+      <TouchableOpacity block={block} onPress={onClick}>
+        <ButtonWrapper marginLeft={marginLeft} bgColor={bgColor} >
+          {icon && <Icon fontSize={20} color={iconColor || 'transparent'} name={icon} />}
           <Text color={color}>{title}</Text>
         </ButtonWrapper>
       </TouchableOpacity>
-    );
+    )
   }
 }
 

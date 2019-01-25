@@ -82,19 +82,21 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const {mapStyle} = this.props
+    const { mapStyle, enableSearch } = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
-    const {region, markerPoint} = this.state
+    const {region, markerPoint, locationSearch} = this.state
     return (
       <MainView>
-        <Input type='default' placeholder='Search Location' onChangeText={ locationSearch => this.setState({locationSearch })} />
-        <Button
-          title='Search'
-          onClick={() => this.getLocationDetails(this.state.locationSearch)}
-          variant='grey'
-        />
+        { enableSearch && <Input type='default' placeholder='Search Location' onChangeText={ locationSearch => this.setState({locationSearch })} /> }
+        { enableSearch &&
+          <Button
+            title='Search'
+            onClick={() => this.getLocationDetails(locationSearch)}
+            variant='grey'
+          />
+        }
         <Animated
           region={region}
           customMapStyle={customMapStyle}

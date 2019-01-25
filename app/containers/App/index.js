@@ -20,22 +20,11 @@ import Profile from '../../components/views/Profile';
 import Notification from '../../components/views/Notification';
 import { Text } from 'react-native';
 
-
-
-import { withAuthenticator } from 'aws-amplify-react-native'
-import { Auth } from 'aws-amplify'
-import awsconfig from '../../../aws-exports';
-Auth.configure(awsconfig);
-
-
-
-
 const MyApp = createDrawerNavigator(
   {
+    Profile: createStackNavigator({ Profile }),
     RequestForm,
     Notification: createStackNavigator({ Notification }),
-    Profile: createStackNavigator({ Profile }),
-    Settings,
   },
   { drawerBackgroundColor: 'lightgrey' },
 );

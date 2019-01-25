@@ -3,34 +3,27 @@ import styled from 'styled-components';
 export const Pic = styled.Image`
   width: 150;
   height: 150;
-  border-radius: 150;
+  borderRadius: 150;
   margin:15px;
-  `
+`
 
-export const Container = styled.View`
+export const InfoView = styled.View`
+  paddingHorizontal:22px;
+`
+
+export const Container = styled.ScrollView`
   flex:1;
-  justify-content: space-between;
-`;
+  backgroundColor:white;
+  paddingHorizontal:18;
+  paddingTop: 10;
+`
 
 export const Wrap = styled.View`
   alignItems: center;
-  flex:1;
   backgroundColor:black;
-`;
+`
 
-export const MainView = styled.View`
-`;
-
-export const ProfileView = styled.View`
-  justify-content: space-between;
+export const Wrapper = styled.TouchableOpacity`
   flex-direction:row;
-`;
-
-export const Wrapper = styled.View`
-  borderBottomWidth:1px;
-  borderBottomColor:lightgray;
-  marginTop:10px;
-  flex-direction:row;
-  justify-content: space-between;
-  padding:15px;
-`;
+  paddingVertical:15;
+`

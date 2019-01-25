@@ -9,6 +9,7 @@ import { View } from 'react-native'
 import Button from '../../widgets/Button'
 import { createStackNavigator } from 'react-navigation'
 import Input from '../../widgets/Input'
+import BloodGroup from '../../widgets/BloodGroup'
 
 import Map from '../Map';
 
@@ -33,7 +34,6 @@ class RequestForm extends React.PureComponent {
     }
   }
 
-
   constructor(props) {
     super(props)
     this.state = {
@@ -43,6 +43,8 @@ class RequestForm extends React.PureComponent {
   }
 
   validateForm = () => {
+    // ask gender while requesting blood???
+    // ask if any ride can be provided???
     const { bloodGroup, bloodUnit, relation, info} = this.state
     if(!bloodGroup) return alert('Select Group')
     if(!bloodUnit) return alert('Select blood unit')
@@ -65,23 +67,18 @@ class RequestForm extends React.PureComponent {
     const { bloodGroup, bloodUnit} = this.state
     return (
       <MainView>
-        {<Map mapStyle={mapStyle} locationInfo={info => this.setState({info})} />}
+        <Map
+          mapStyle={mapStyle}
+          enableSearch={true}
+          locationInfo={info => this.setState({info})}
+        />
+
         <View>
           <Wrapper>
-            <Dropdown
+            <BloodGroup
               selectedValue = {bloodGroup}
-              style={{ height: 50, width: '100%' }}
-              onValueChange={bloodGroup => this.setState({bloodGroup}) }>
-              <Dropdown.Item label="Select Blood Group" value="" />
-              <Dropdown.Item label="A -ve" value="A -ve" />
-              <Dropdown.Item label="A +ve" value="A +ve" />
-              <Dropdown.Item label="B +ve" value="B +ve" />
-              <Dropdown.Item label="B -ve" value="B -ve" />
-              <Dropdown.Item label="AB +ve" value="AB +ve" />
-              <Dropdown.Item label="AB -ve" value="AB -ve" />
-              <Dropdown.Item label="O +ve" value="O +ve" />
-              <Dropdown.Item label="O -ve" value="O -ve" />
-            </Dropdown>
+              onValueChange={bloodGroup => this.setState({bloodGroup}) }
+            />
           </Wrapper>
           <Wrapper>
           <Dropdown
