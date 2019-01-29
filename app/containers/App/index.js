@@ -20,6 +20,7 @@ import BloodRequest from '../../components/views/BloodRequest';
 import RequestForm from '../../components/views/RequestForm';
 import Profile from '../../components/views/Profile';
 import Notification from '../../components/views/Notification';
+import SearchLocation from '../../components/views/SearchLocation';
 import Icon from '../../components/widgets/Icon';
 import { Text } from 'react-native';
 
@@ -33,9 +34,14 @@ const MyApp = createDrawerNavigator(
 )
 
 
+const MainNavigator = createStackNavigator({
+  map: SearchLocation,
+  Home: RequestForm,
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
-    RequestForm: RequestForm,
+    RequestForm: MainNavigator,
     Profile: Profile,
     Notification: Notification,
   },

@@ -64,7 +64,6 @@ class Map extends React.PureComponent {
           latitudeDelta,
           longitudeDelta,
         }
-        console.log('point: ', point);
         const region = new AnimatedRegion(point)
         this.setState({region, markerPoint: point, regionChanged: true})
       }
@@ -89,14 +88,6 @@ class Map extends React.PureComponent {
     const {region, markerPoint, locationSearch} = this.state
     return (
       <MainView>
-        { enableSearch && <Input type='default' placeholder='Search Location' onChangeText={ locationSearch => this.setState({locationSearch })} /> }
-        { enableSearch &&
-          <Button
-            title='Search'
-            onClick={() => this.getLocationDetails(locationSearch)}
-            variant='grey'
-          />
-        }
         <Animated
           region={region}
           customMapStyle={customMapStyle}
@@ -116,4 +107,4 @@ class Map extends React.PureComponent {
   }
 }
 
-export default Map;
+export default Map

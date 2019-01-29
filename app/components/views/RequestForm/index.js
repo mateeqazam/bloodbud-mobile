@@ -24,14 +24,7 @@ class RequestForm extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Blood Request',
-      headerLeft: (
-        <Button
-          onClick={()=>{}}
-          icon='bars'
-          iconColor='black'
-        />
-      ),
+      headerTitle: 'Blood Request Form',
     }
   }
 
@@ -68,10 +61,17 @@ class RequestForm extends React.PureComponent {
     const { bloodGroup, bloodUnit} = this.state
     return (
       <MainView>
+        <Button
+          title='Search'
+          onClick={()=>this.props.navigation.navigate('map')}
+          variant='grey'
+        />
+
         <Map
           mapStyle={mapStyle}
           enableSearch={true}
           locationInfo={info => this.setState({info})}
+          navigation={this.props.navigation}
         />
 
         <View>
