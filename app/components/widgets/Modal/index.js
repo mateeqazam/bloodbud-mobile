@@ -13,9 +13,16 @@ import Button from '../Button'
 
 class customModal extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      text: ''
+    }
+  }
+
   render() {
     const {modalVisible, toggleModal} = this.props
-    console.log('modalVisible: ', modalVisible);
+    const {text} = this.state
     return (
       <View>
         <Modal
@@ -25,7 +32,7 @@ class customModal extends React.Component {
           onRequestClose={()=>toggleModal(false)}>
           <ModalView>
             <ModalBody>
-              <Input placeholder={`Update ${modalVisible}`} onChangeText={ relation => this.setState({relation })} />
+              <Input placeholder={'Update Value'} onChangeText={ text => this.setState({text})} />
               <Buttons>
                 <Button
                   variant='grey'
@@ -37,7 +44,7 @@ class customModal extends React.Component {
                   variant='grey'
                   bgColor='transparent'
                   title='Update'
-                  onClick={()=>toggleModal(false)}
+                  onClick={()=>toggleModal(false,text)}
                 />
               </Buttons>
             </ModalBody>

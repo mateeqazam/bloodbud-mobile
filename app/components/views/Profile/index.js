@@ -34,7 +34,7 @@ class Profile extends React.PureComponent {
       headerLeft: (
         <Button
           marginLeft={9}
-          onClick={()=>navigation.toggleDrawer()}
+          onClick={()=>{}}
           icon='bars'
           iconColor='black'
         />
@@ -44,26 +44,39 @@ class Profile extends React.PureComponent {
 
   constructor(props) {
     super(props)
+    let {user} = Auth
+    Auth.currentAuthenticatedUser({ bypassCache: true }).then((v)=>{
+      console.log('v: ', v);
+    })
+    let {attributes} = user
+
     this.state = {
       bloodGroup: '',
       bloodDonated: '',
       calendar: false,
       range: 20,
       modalVisible: false,
-      gender: ''
+      gender: '',
+      nickname:attributes.nickname,
+      email:attributes.email,
+      phone_number:attributes.phone_number,
+      birthdate:attributes.birthdate,
     }
   }
 
-  showElement(key,value,icon){
+
+  showElement(key,icon,attribute){
+    let val = this.state[attribute] || ''
+    val = key === 'Password' ? '******' : val
     return (
       <Wrapper onPress={()=>{
-          if(icon === 'calendar') return this.setState({[icon]: true})
-          this.setState({modalVisible: key})
+          if(icon === 'calendar') return this.setState({[icon]: true, modalVisible: attribute})
+          this.setState({modalVisible: attribute})
         }}>
         <Icon fontSize={22} name={icon} />
         <InfoView>
-          <Text fontWeight='bold'>{key}</Text>
-          <Text>{value}</Text>
+          <Text>{key}</Text>
+          <Text>{val}</Text>
         </InfoView>
       </Wrapper>
     )
@@ -71,25 +84,49 @@ class Profile extends React.PureComponent {
   
   _showDateTimePicker = () => this.setState({ calendar: true });
   _hideDateTimePicker = () => this.setState({ calendar: false });
-  _handleDatePicked = (date) => {
-    console.log('A date has been picked: ', date);
+  _handleDatePicked = date => {
+    let dd = date.getDate();
+    let mm = date.getMonth()+1; 
+    let yyyy = date.getFullYear()
+    const birthdate = (dd<10?'0'+dd:dd)+'-'+(mm<10?'0'+mm:mm)+'-'+yyyy
+    this.setState({birthdate})
+    this.toggleModal(false,birthdate)
     this._hideDateTimePicker();
-  };
+  }
 
-  toggleModal = modalVisible => {
+  toggleModal = async (modalVisible, text = '') => {
+    let key = this.state.modalVisible
+    if(text && key) {
+      this.setState({[key]:text})
+
+      const user = await Auth.currentAuthenticatedUser()
+      console.log('user: ', user);
+      console.log('key, text: ', key, text);
+
+      Auth.updateUserAttributes(user, {
+        [key]: text
+        // 'custom:attached_device': text
+        }).then(result => {
+          console.log('updateUserAttributes', result);
+        }).catch(err => {
+          console.log('error is aws update user  ',err)
+        })
+
+    }
     this.setState({modalVisible})
   }
+
 
   render() {
     const { bloodGroup, gender, bloodDonated, calendar, range, modalVisible } = this.state
     return (
       <Container>
 
-        {this.showElement('Name','Ali','user')}
-        {this.showElement('Email','ali@gmail.com','envelope')}
-        {this.showElement('Phone Number','090078601','phone')}
-        {this.showElement('Password','******','lock')}
-        {this.showElement('Date of Birth','9 June 1993','calendar')}
+        {this.showElement('Name','user','nickname')}
+        {this.showElement('Email','envelope','email')}
+        {this.showElement('Phone Number','phone','phone_number')}
+        {this.showElement('Password','lock','password')}
+        {this.showElement('Date of Birth','calendar','birthdate')}
 
         <Text>{`Maximum Distance : ${range}km `}</Text>
         <Slider
@@ -132,7 +169,12 @@ class Profile extends React.PureComponent {
           }}
         />
 
+
+
         <DateTimePicker
+          date={new Date(631134000000)}
+          minimumDate={new Date(31518000000)}
+          maximumDate={new Date(1009825200000)}
           datePickerModeAndroid='spinner'
           isVisible={calendar}
           onConfirm={this._handleDatePicked}

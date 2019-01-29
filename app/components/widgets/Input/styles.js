@@ -1,23 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Icon from '../Icon';
 
 export const InputFieldWrapper = styled.View`
-  width: 100%;
-  marginVertical:${props => (props.marginVertical || 10)};
-  display: flex;
-  flexDirection: row;
-  borderBottomWidth: 1;
-  padding: 10px;
-  ${''}
-`;
+	${props => !!props.marginVertical && css`marginVertical: ${props.marginVertical}`};
+	borderBottomWidth: 1;
+`
 
 export const InputWrapper = styled.TextInput` 
-height: ${props => (props.height || 40)};
-`;
-// fontSize: ${props => (props.fontSize || props.theme.fontSize)};
+  ${props => !!props.height && css`height: ${props.height}`};
+  fontSize: ${props => (props.fontSize || 13)};
+`
 // fontFamily: ${props => (props.fontFamilyLabel || props.theme.fontFamily)};
-// paddingLeft: 10px;
-// flex: 1;
 // display: flex;
 // color: black;
 // fontSize: 50;
@@ -31,4 +24,4 @@ export const StyledIcon = styled(Icon)`
   width: ${props => (props.imagewidth || 16)};
   height: ${props => (props.imageheight || 16)};
   tintColor: ${props => (props.tintColor || props.theme.colors.gray)};
-`;
+`

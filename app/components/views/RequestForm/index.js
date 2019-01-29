@@ -27,7 +27,7 @@ class RequestForm extends React.PureComponent {
       headerTitle: 'Blood Request',
       headerLeft: (
         <Button
-          onClick={()=>navigation.toggleDrawer()}
+          onClick={()=>{}}
           icon='bars'
           iconColor='black'
         />

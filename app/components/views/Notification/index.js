@@ -30,7 +30,7 @@ class Notification extends React.PureComponent {
         <Button
           icon='bars'
           iconColor='black'
-          onClick={() => navigation.toggleDrawer()}
+          onClick={() => {}}
         />
     ),
   })
