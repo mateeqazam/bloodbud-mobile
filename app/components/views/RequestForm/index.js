@@ -37,8 +37,6 @@ class RequestForm extends React.PureComponent {
   }
 
   validateForm = () => {
-    // ask gender while requesting blood???
-    // ask if any ride can be provided???
     const { bloodGroup, bloodUnit, relation, info} = this.state
     if(!bloodGroup) return alert('Select Group')
     if(!bloodUnit) return alert('Select blood unit')
@@ -61,11 +59,6 @@ class RequestForm extends React.PureComponent {
     const { bloodGroup, bloodUnit} = this.state
     return (
       <MainView>
-        <Button
-          title='Search'
-          onClick={()=>this.props.navigation.navigate('map')}
-          variant='grey'
-        />
 
         <Map
           mapStyle={mapStyle}
@@ -86,7 +79,7 @@ class RequestForm extends React.PureComponent {
             selectedValue={bloodUnit}
             style={{ height: 50, width: '100%' }}
             onValueChange={bloodUnit => this.setState({bloodUnit})}
-            >
+          >
               <Dropdown.Item label="Select Blood Unit" value="" />
               <Dropdown.Item label="1" value="1" />
               <Dropdown.Item label="2" value="2" />

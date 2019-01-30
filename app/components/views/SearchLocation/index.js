@@ -12,14 +12,20 @@ import { View, Text } from 'react-native';
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 
+
+import {
+  MainView,
+} from './styles'
+
+
 const googleApiKey = 'AIzaSyB94Glgain12Qqgn9Vzj4nwkQiiFKWIqx8'
 
 class SearchLocation extends React.Component {
 
-
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Search Location',
+      headerTitle: 'Search Hospital',
+      onBackPress: () => navigation.pop(),
     }
   }
 
@@ -34,59 +40,43 @@ class SearchLocation extends React.Component {
     const base_url = 'https://maps.googleapis.com/maps/api/'
     const placeId = "ChIJGZ5hhu4DGTkR88TG6XMM8h0"
     const url2 = `${base_url}place/details/json?placeid=${placeId}&key=${googleApiKey}`
-
-    const url3=`${base_url}place/autocomplete/json?input=${location}%hospital&types=geocode&key=${googleApiKey}`
-
-    const url=`${base_url}geocode/json?address=${location}&components=health&key=${googleApiKey}`
-
+    const url3 = `${base_url}place/autocomplete/json?input=${location}%hospital&types=geocode&key=${googleApiKey}`
+    const url = `${base_url}geocode/json?address=${location}&components=health&key=${googleApiKey}`
     
     fetch(url)
     .then(response => response.json())
     .then(locs => {
-      console.log('locs: ', locs);
-      // console.log('locations: ', locations);
       this.setState({locations: locs.results})
-      // console.log('resp: ', resp);
-
-      // if(resp && resp.results && resp.results[0]){
-      //   let loc = resp.results[0].geometry.location
-      //   loc.title = resp.results[0].formatted_address
-      //   this.props.locationInfo(loc.title)
-      //   const point = {
-      //     latitude:loc.lat,
-      //     longitude:loc.lng,
-      //     title:loc.title,
-      //     latitudeDelta,
-      //     longitudeDelta,
-      //   }
-      //   console.log('point: ', point);
-      //   const region = new AnimatedRegion(point)
-      //   this.setState({region, markerPoint: point, regionChanged: true})
-      // }
-    });
+    })
   }
 
   render() {
     const {locations} = this.state
+    const {navigation:{navigate}} = this.props
     return (
-      <View>
-        <Input type='default' placeholder='Search Location' onChangeText={this.getLocationDetails} /> 
-
+      <MainView>
+        <Input type='default' placeholder='Hospital Name or lat,lng' onChangeText={this.getLocationDetails} /> 
         { 
           locations && locations.map((obj,i) => {
-          console.log('obj: ', obj);
-            return <View key={i}>
-                <Button
+            return <Button
+                  key={i}
                   title={obj.formatted_address}
-                  onClick={()=>console.log('this.props: ', obj)}
+                  onClick={()=>{
+                    const isHospital = obj.types.indexOf('hospital')
+                    const isHealth = obj.types.indexOf('health')
+                    
+                    const hospital = obj.formatted_address.match(/hospital/i)
+
+                    if(isHospital < 0 && isHealth < 0 && !hospital) return alert('Select location for hospital')
+                    navigate("RequestForm", { selectedLocation: obj })
+                  }}
                   variant='grey'
                 />
-              </View>
-              
             })
         }
-      </View>
+      </MainView>
     )
   }
 }
-export default SearchLocation;
+
+export default SearchLocation

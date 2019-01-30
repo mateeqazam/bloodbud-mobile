@@ -37,12 +37,14 @@ class Button extends React.Component {
           break;
       case 'gp':
           bgColor = '#FF4745'
-          break;
+          break
     }
+
     return (
       <TouchableOpacity block={block} onPress={onClick}>
         <ButtonWrapper marginLeft={marginLeft} bgColor={bgColor} >
-          {icon && <Icon fontSize={20} color={iconColor || 'transparent'} name={icon} />}
+          {icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />}
+
           <Text color={color}>{title}</Text>
         </ButtonWrapper>
       </TouchableOpacity>
@@ -50,8 +52,5 @@ class Button extends React.Component {
   }
 }
 
-Button.propTypes = {
 
-};
-
-export default Button;
+export default Button

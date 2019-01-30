@@ -14,19 +14,19 @@ import parseStyles from './parseStyles';
 
 
 export const Wrapper = styled.View`
-  marginTop:5px;
-`;
-
+  marginTop: ${props => props.marginTop || 1};
+  paddingHorizontal: 5px;
+`
 
 function Icon(props) {
   if (!props || !Icons[props.name]) return null;
 
-  const { name, style, ...restProps } = props;
+  const { name, style, marginTop, ...restProps } = props;
   delete restProps.align;
   const styles = parseStyles(style, restProps);
   // console.log('icons',Icons)
   return (
-    <Wrapper>
+    <Wrapper marginTop = {marginTop}>
       <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
     </Wrapper>
   );

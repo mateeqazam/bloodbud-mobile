@@ -73,7 +73,8 @@ class Profile extends React.PureComponent {
           if(icon === 'calendar') return this.setState({[icon]: true, modalVisible: attribute})
           this.setState({modalVisible: attribute})
         }}>
-        <Icon fontSize={22} name={icon} />
+        
+        <Icon marginTop={7} fontSize={22} name={icon} />
         <InfoView>
           <Text>{key}</Text>
           <Text>{val}</Text>

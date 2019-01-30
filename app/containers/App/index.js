@@ -35,8 +35,8 @@ const MyApp = createDrawerNavigator(
 
 
 const MainNavigator = createStackNavigator({
-  map: SearchLocation,
-  Home: RequestForm,
+  RequestForm,
+  SearchLocation,
 });
 
 const TabNavigator = createBottomTabNavigator(

@@ -8,7 +8,7 @@ export const Pic = styled.Image`
 `
 
 export const InfoView = styled.View`
-  paddingHorizontal:22px;
+  paddingHorizontal: 15px;
 `
 
 export const Container = styled.ScrollView`

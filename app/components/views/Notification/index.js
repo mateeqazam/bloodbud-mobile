@@ -54,35 +54,35 @@ class Notification extends React.PureComponent {
           <Text>Need AB+ Blood Group</Text>
         </Wrap>
 
-<Btns>
-        <Button
-          title='Accept'
-          onClick={() => console.log('Accept')}
-          variant='success'
-          block='30%'
-        />
+        <Btns>
+          <Button
+            title='Accept'
+            onClick={() => console.log('Accept')}
+            variant='success'
+            block='30%'
+          />
 
-        <Button
-          title='Reject'
-          onClick={() => console.log('Reject')}
-          variant='primary'
-          block='30%'
-        />
+          <Button
+            title='Reject'
+            onClick={() => console.log('Reject')}
+            variant='primary'
+            block='30%'
+          />
 
-        <Button
-          title='Refer'
-          onClick={() => {
-            Auth.signOut().then(() => {
-              console.log('this: ', this);
-              this.props.onStateChange('signIn',{})
-            }).catch(e => {
-							console.log('e: ', e);
-						})
-          }}
-          block='30%'
-          variant='default'
-        />
-</Btns>
+          <Button
+            title='Refer'
+            onClick={() => {
+              Auth.signOut().then(() => {
+                console.log('this: ', this);
+                this.props.onStateChange('signIn',{})
+              }).catch(e => {
+                console.log('e: ', e);
+              })
+            }}
+            block='30%'
+            variant='default'
+          />
+        </Btns>
       </Container>
     );
   }

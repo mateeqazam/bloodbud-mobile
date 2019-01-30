@@ -5,7 +5,7 @@
 */
 
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, AsyncStorage } from 'react-native'
 import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Animated } from 'react-native-maps'
 
 import Button from '../../widgets/Button'
@@ -33,17 +33,14 @@ class Map extends React.PureComponent {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
-        const region = new AnimatedRegion({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta,
-          longitudeDelta
-        })
-        this.setState({region , markerPoint: position.coords})
         const location = `${position.coords.latitude},${position.coords.longitude}`
         this.getLocationDetails(location)
+        this._storeData('lastLocation',location)
       },
-      error => { console.log('current location fetch error: ',error) },
+      error => {
+        // this._retrieveData('lastLocation')
+        console.log('current location fetch error: ',error)
+      },
       { enableHighAccuracy: true, timeout: 30000 }
     )
   }
@@ -54,20 +51,47 @@ class Map extends React.PureComponent {
     .then((response) => response.json())
     .then((resp) => {
       if(resp && resp.results && resp.results[0]){
-        let loc = resp.results[0].geometry.location
-        loc.title = resp.results[0].formatted_address
-        this.props.locationInfo(loc.title)
-        const point = {
-          latitude:loc.lat,
-          longitude:loc.lng,
-          title:loc.title,
-          latitudeDelta,
-          longitudeDelta,
-        }
-        const region = new AnimatedRegion(point)
-        this.setState({region, markerPoint: point, regionChanged: true})
+        this.setLocation(resp.results[0])
       }
     });
+  }
+
+  _storeData = async (key,data) => {
+    try {
+      data = JSON.stringify(data)
+      await AsyncStorage.setItem(key, data)
+    } catch (e) {
+      console.log('Error saving data: ', e)
+    }
+  }
+
+  _retrieveData = async (key) => {
+    try {
+      let value = await AsyncStorage.getItem(key);
+      value = JSON.parse(value)
+      console.log('value: ', value);
+      if(value) this.getLocationDetails(value)
+    } catch (e) {
+      console.log('Error retrieving data: ', e);
+    }
+  }
+
+  setLocation = (location) => {
+    let loc = location.geometry.location
+    loc.title = location.formatted_address
+    console.log('loc: ', loc);
+    this.props.locationInfo(loc.title)
+    const point = {
+      latitude:loc.lat,
+      longitude:loc.lng,
+      title:loc.title,
+      latitudeDelta,
+      longitudeDelta,
+    }
+    // this._storeData(location)
+
+    const region = new AnimatedRegion(point)
+    this.setState({region, markerPoint: point, regionChanged: true})
   }
 
   onRegionChange = point => {
@@ -80,14 +104,35 @@ class Map extends React.PureComponent {
     this.getLocationDetails( `${point.latitude},${point.longitude}` )
   }
 
+  componentWillReceiveProps(props){
+    const {navigation: {state: { params }}} = props;
+    console.log('params: ', params);
+    if(params && params.selectedLocation){
+      const {selectedLocation} = params
+      this.setLocation(selectedLocation)
+    }
+  }
+
   render() {
     const { mapStyle, enableSearch } = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
-    const {region, markerPoint, locationSearch} = this.state
+    const {region, markerPoint} = this.state
+
     return (
       <MainView>
+
+        {enableSearch && <Button
+          title='Search Hospital'
+          onClick={()=>this.props.navigation.navigate('SearchLocation')}
+          variant='grey'
+          bgColor='white'
+          icon='search'
+          iconColor='black'
+
+        />}
+
         <Animated
           region={region}
           customMapStyle={customMapStyle}
