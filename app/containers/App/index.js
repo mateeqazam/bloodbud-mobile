@@ -24,16 +24,6 @@ import SearchLocation from '../../components/views/SearchLocation';
 import Icon from '../../components/widgets/Icon';
 import { Text } from 'react-native';
 
-const MyApp = createDrawerNavigator(
-  {
-    Profile: createStackNavigator({ Profile }),
-    Notification: createStackNavigator({ Notification }),
-    RequestForm: createStackNavigator({ RequestForm }),
-  },
-  { drawerBackgroundColor: 'lightgrey' },
-)
-
-
 const MainNavigator = createStackNavigator({
   RequestForm,
   SearchLocation,
@@ -46,23 +36,19 @@ const TabNavigator = createBottomTabNavigator(
     Notification: Notification,
   },
   {
-
-    defaultNavigationOptions: ({ navigation }) => ({
+    navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
-        console.log('routeName: ', routeName);
         let IconComponent = Ionicons;
         let iconName;
         if (routeName === 'Profile') {
-          iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-          // Sometimes we want to add badges to some icons. 
-          // You can check the implementation below.
-          IconComponent = HomeIconWithBadge; 
-        } else if (routeName === 'Settings') {
-          iconName = `ios-options${focused ? '' : '-outline'}`;
+          iconName =  `ios-information-circle${focused ? '' : '-outline'}`
+        } else if (routeName === 'RequestForm') {
+          iconName = 'ios-options'
+        } else if (routeName === 'Notification') {
+          iconName =  `ios-notifications${focused ? '' : '-outline'}`
         }
 
-        // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
     }),
@@ -73,6 +59,4 @@ const TabNavigator = createBottomTabNavigator(
   }
 )
 
-
 export default TabNavigator
-// export default   createStackNavigator ({ withAuthenticator(App) })
