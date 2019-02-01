@@ -14,13 +14,15 @@ import { InputFieldWrapper, InputWrapper, StyledIcon } from './styles';
 
 class Input extends React.Component {
   render() {
-    const { icon, type, placeholder, secureTextEntry, onChangeText } = this.props
+    const { icon, type, placeholder, secureTextEntry, onChangeText, width, value } = this.props
 
     return (
       <InputFieldWrapper >
         {icon && <Icon  name={icon} />}
         <InputWrapper
+          width={width}
           onChangeText={text=>onChangeText(text)}
+          value={value}
           textcolor='black'
           secureTextEntry={secureTextEntry}
           keyboardType={type}

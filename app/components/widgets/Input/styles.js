@@ -8,6 +8,7 @@ export const InputFieldWrapper = styled.View`
 
 export const InputWrapper = styled.TextInput` 
   ${props => !!props.height && css`height: ${props.height}`};
+  ${props => !!props.width && css`width: ${props.width}`};
   fontSize: ${props => (props.fontSize || 13)};
 `
 // fontFamily: ${props => (props.fontFamilyLabel || props.theme.fontFamily)};

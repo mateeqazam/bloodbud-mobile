@@ -20,6 +20,10 @@ class customModal extends React.Component {
     }
   }
 
+  componentWillReceiveProps(props){
+    this.setState({text: props.value})
+  }
+
   render() {
     const {modalVisible, toggleModal} = this.props
     const {text} = this.state
@@ -32,7 +36,7 @@ class customModal extends React.Component {
           onRequestClose={()=>toggleModal(false)}>
           <ModalView>
             <ModalBody>
-              <Input placeholder={'Update Value'} onChangeText={ text => this.setState({text})} />
+              <Input value={text} width={250} placeholder={'Update Value'} onChangeText={ text => this.setState({text})} />
               <Buttons>
                 <Button
                   variant='grey'

@@ -46,7 +46,7 @@ class Profile extends React.PureComponent {
     super(props)
     let {user} = Auth
     Auth.currentAuthenticatedUser({ bypassCache: true }).then((v)=>{
-      console.log('v: ', v);
+      console.log('user without cache: ', v);
     })
     let {attributes} = user
 
@@ -120,6 +120,8 @@ class Profile extends React.PureComponent {
 
   render() {
     const { bloodGroup, gender, bloodDonated, calendar, range, modalVisible } = this.state
+    const value = this.state[modalVisible] || ''
+
     return (
       <Container>
 
@@ -184,6 +186,7 @@ class Profile extends React.PureComponent {
         <Modal
           toggleModal={this.toggleModal}
           modalVisible={modalVisible}
+          value={value}
         />
 
       </Container>

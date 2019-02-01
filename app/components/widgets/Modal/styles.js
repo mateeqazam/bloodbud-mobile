@@ -8,8 +8,7 @@ export const ModalView = styled.View`
 
 export const ModalBody = styled.View`
   backgroundColor: white;
-  paddingHorizontal: 60;
-  paddingBottom: 40;
+  padding: 20px;
   alignItems: center;
   borderRadius:10;
 `
