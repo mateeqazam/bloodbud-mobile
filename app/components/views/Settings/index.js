@@ -56,7 +56,4 @@ class Settings extends React.PureComponent {
     )
   }
 }
-
-export default createStackNavigator({
-  Settings,
-})
+export default Settings //createStackNavigator({Settings})
