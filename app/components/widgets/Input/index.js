@@ -5,12 +5,8 @@
 */
 
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
-// import PropTypes from 'prop-types';
-import Icon from '../Icon'
-
+import { View } from 'react-native';
 import { InputFieldWrapper, InputWrapper, StyledIcon } from './styles';
-
 
 class Input extends React.Component {
   render() {
@@ -18,7 +14,7 @@ class Input extends React.Component {
 
     return (
       <InputFieldWrapper >
-        {icon && <Icon  name={icon} />}
+        {icon && <StyledIcon  name={icon} />}
         <InputWrapper
           width={width}
           onChangeText={text=>onChangeText(text)}
@@ -30,12 +26,8 @@ class Input extends React.Component {
           underlineColorAndroid="transparent"
         />
       </InputFieldWrapper>
-    );
+    )
   }
 }
-
-Input.propTypes = {
-
-};
 
 export default Input;

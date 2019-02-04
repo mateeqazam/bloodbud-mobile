@@ -4,6 +4,7 @@ import Icon from '../Icon';
 export const InputFieldWrapper = styled.View`
 	${props => !!props.marginVertical && css`marginVertical: ${props.marginVertical}`};
 	borderBottomWidth: 1;
+  flexDirection:row;
 `
 
 export const InputWrapper = styled.TextInput` 
@@ -20,9 +21,7 @@ export const InputWrapper = styled.TextInput`
 // borderBottomWidth:  ${props => (props.borderBottomWidth || 0)}; 
 
 export const StyledIcon = styled(Icon)`
-  marginRight: 8;
-  marginTop:5;
+  marginTop:15;
   width: ${props => (props.imagewidth || 16)};
   height: ${props => (props.imageheight || 16)};
-  tintColor: ${props => (props.tintColor || props.theme.colors.gray)};
 `

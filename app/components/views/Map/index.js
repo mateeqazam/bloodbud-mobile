@@ -69,8 +69,6 @@ class Map extends React.PureComponent {
     try {
       let value = await AsyncStorage.getItem(key);
       value = JSON.parse(value)
-      console.log('value: ', value);
-      if(value) this.getLocationDetails(value)
     } catch (e) {
       console.log('Error retrieving data: ', e);
     }

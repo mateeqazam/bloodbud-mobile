@@ -1,9 +1,14 @@
 /* eslint-disable import/prefer-default-export */
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const TextWrapper = styled.Text`
   font-size: ${props => (props.fontSize || props.theme.fontSize)};
   color: ${props => (props.color || props.fontColor || props.theme.colors.text)};
+  ${props => !!props.marginTop && css`marginTop: ${props.marginTop}`};
+  ${props => !!props.backgroundColor && css`backgroundColor: ${props.backgroundColor}`};
+  ${props => !!props.padding && css`padding: ${props.padding}`};
+  ${props => !!props.margin && css`margin: ${props.margin}`};
+  ${props => !!props.borderBottomWidth && css`borderBottomWidth: ${props.borderBottomWidth}`};
 
   /* font-family: ${(props) => {
     if (props.fontWeight === 'light') return 'Segoeui-Light';

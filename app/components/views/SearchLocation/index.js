@@ -5,18 +5,19 @@
 */
 
 import React from 'react';
-import { View, Text } from 'react-native';
-// import PropTypes from 'prop-types';
-
+import { AsyncStorage } from 'react-native';
 
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
-
+import Text from '../../widgets/Text'
+import Icon from '../../widgets/Icon'
 
 import {
   MainView,
+  InfoView,
+  Locations,
+  Wrapper
 } from './styles'
-
 
 const googleApiKey = 'AIzaSyB94Glgain12Qqgn9Vzj4nwkQiiFKWIqx8'
 
@@ -29,51 +30,66 @@ class SearchLocation extends React.Component {
     }
   }
 
+  _retrieveData = async (key) => {
+    try {
+      let value = await AsyncStorage.getItem(key);
+      return value = JSON.parse(value)
+    } catch (e) {
+      console.log('Error retrieving data: ', e);
+    }
+  }
+
   constructor(props) {
     super(props)
     this.state = {
       locations:[]
     }
+    this.getLocationDetails('')
   }
 
-  getLocationDetails = location => {
+  getLocationDetails = async (location) => {
     const base_url = 'https://maps.googleapis.com/maps/api/'
-    const placeId = "ChIJGZ5hhu4DGTkR88TG6XMM8h0"
-    const url2 = `${base_url}place/details/json?placeid=${placeId}&key=${googleApiKey}`
-    const url3 = `${base_url}place/autocomplete/json?input=${location}%hospital&types=geocode&key=${googleApiKey}`
-    const url = `${base_url}geocode/json?address=${location}&components=health&key=${googleApiKey}`
-    
+    let nearby = !location
+    location = location || 'hospital'
+    let value = await this._retrieveData('lastLocation')
+    const url = `${base_url}place/textsearch/json?query=${location}&location=${value}&radius=10000&key=${googleApiKey}`
     fetch(url)
     .then(response => response.json())
     .then(locs => {
-      this.setState({locations: locs.results})
+      this.setState({locations: locs.results, nearby})
     })
   }
 
-  render() {
-    const {locations} = this.state
+  openLocation(obj){
     const {navigation:{navigate}} = this.props
+    const isHospital = obj.types.indexOf('hospital')
+    const isHealth = obj.types.indexOf('health')
+    const hospital = obj.formatted_address.match(/hospital/i)
+    if(isHospital < 0 && isHealth < 0 && !hospital) return alert('Select location for hospital')
+    navigate("RequestForm", { selectedLocation: obj })
+  }
+
+  render() {
+    const {locations, nearby} = this.state
+    const type = nearby ? 'Nearby Hospitals' : 'Search Results'
     return (
       <MainView>
-        <Input type='default' placeholder='Hospital Name or lat,lng' onChangeText={this.getLocationDetails} /> 
+        <Input icon="search" type='default' placeholder='Hospital Name or lat,lng' onChangeText={this.getLocationDetails} />
+        <Text borderBottomWidth='1px' backgroundColor='lightgrey' padding={'5px'}>{type}</Text>
+        <Locations>
         { 
           locations && locations.map((obj,i) => {
-            return <Button
-                  key={i}
-                  title={obj.formatted_address}
-                  onClick={()=>{
-                    const isHospital = obj.types.indexOf('hospital')
-                    const isHealth = obj.types.indexOf('health')
-                    
-                    const hospital = obj.formatted_address.match(/hospital/i)
-
-                    if(isHospital < 0 && isHealth < 0 && !hospital) return alert('Select location for hospital')
-                    navigate("RequestForm", { selectedLocation: obj })
-                  }}
-                  variant='grey'
-                />
+            return  <Wrapper key={i}
+            onPress={()=>this.openLocation(obj)}>
+              <Icon marginTop={7} fontSize={22} name={'mapMarker'} />
+              <InfoView>
+                <Text>{obj.name || obj.formatted_address}</Text>
+                <Text>{obj.formatted_address}</Text>
+              </InfoView>
+            </Wrapper>
             })
         }
+        </Locations>
       </MainView>
     )
   }
