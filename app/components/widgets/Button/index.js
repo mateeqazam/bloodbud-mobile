@@ -8,16 +8,16 @@ import React from 'react';
 import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 
-import { ButtonWrapper, TouchableOpacity } from './styles'
+import { ButtonWrapper, Wrapper } from './styles'
 import Text from '../Text'
 import Icon from '../Icon'
 
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, block, icon, iconColor, marginLeft } = this.props
+    const { onClick, title, variant, block, icon, iconColor, marginLeft,noCenter, ...restProps } = this.props
 
-    const color = variant === 'grey' ? 'black' : 'white'
+    let color = variant === 'grey' ? 'black' : 'white'
     let { bgColor } = this.props
     switch(variant) {
       case 'primary':
@@ -38,16 +38,19 @@ class Button extends React.Component {
       case 'gp':
           bgColor = '#FF4745'
           break
+      case 'map':
+          bgColor = 'white'
+          color = 'black'
+          break
     }
-
     return (
-      <TouchableOpacity block={block} onPress={onClick}>
-        <ButtonWrapper marginLeft={marginLeft} bgColor={bgColor} >
+      <Wrapper {...restProps} >
+        <ButtonWrapper noCenter={noCenter} block={block} onPress={onClick} marginLeft={marginLeft} bgColor={bgColor} >
           {icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />}
 
           <Text color={color}>{title}</Text>
         </ButtonWrapper>
-      </TouchableOpacity>
+      </Wrapper>
     )
   }
 }

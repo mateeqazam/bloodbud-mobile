@@ -26,6 +26,7 @@ import { Text } from 'react-native';
 
 const MainNavigator = createStackNavigator({
   RequestForm,
+  BloodRequest,
   SearchLocation,
 });
 

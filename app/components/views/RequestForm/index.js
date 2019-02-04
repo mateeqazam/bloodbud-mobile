@@ -5,7 +5,7 @@
 */
 
 import React from 'react'
-import { View } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import Button from '../../widgets/Button'
 import { createStackNavigator } from 'react-navigation'
 import Input from '../../widgets/Input'
@@ -37,29 +37,27 @@ class RequestForm extends React.PureComponent {
   }
 
   validateForm = () => {
-    const { bloodGroup, bloodUnit, relation, info} = this.state
-    if(!bloodGroup) return alert('Select Group')
-    if(!bloodUnit) return alert('Select blood unit')
-    if(!relation) return alert('relation info is required')
-    if(!info) return alert('select a location')
-
-    alert(`you selected ${bloodGroup} blood group with ${bloodUnit} unit of blood, and relation info you shared is :  ${relation}, location you shared is : ${info} `)
+    const { info} = this.state
+    if(info) return this.props.navigation.navigate('BloodRequest')
+    return alert('Select Hospital before proceed')
   }
 
   render() {
-
+    var {height} = Dimensions.get('window')
     const mapStyle = {
-      height: 250,
-      position: 'relative',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    };
+      height
+    }
+    const bottomBtn = height - 200
     const { bloodGroup, bloodUnit} = this.state
     return (
       <MainView>
-
+        <Button
+          title="Confirm Location"
+          onClick={this.validateForm}
+          variant='default'
+          block='80%'
+          top={bottomBtn}
+        />
         <Map
           mapStyle={mapStyle}
           enableSearch={true}
@@ -90,12 +88,6 @@ class RequestForm extends React.PureComponent {
           <Input type='default' placeholder='Relation with needy person' onChangeText={ relation => this.setState({relation })} />
           </Wrapper>
         </View>
-
-        <Button
-          title="Request"
-          onClick={this.validateForm}
-          variant='default'
-        />
       </MainView>
     )
   }

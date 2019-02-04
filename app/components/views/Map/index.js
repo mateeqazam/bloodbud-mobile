@@ -7,9 +7,7 @@
 import React from 'react'
 import { StyleSheet, AsyncStorage } from 'react-native'
 import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Animated } from 'react-native-maps'
-
 import Button from '../../widgets/Button'
-import Input from '../../widgets/Input'
 
 import {
   MainView,
@@ -95,7 +93,7 @@ class Map extends React.PureComponent {
   onRegionChange = point => {
     if(this.state.regionChanged) return this.setState({regionChanged: false})
     const region = new AnimatedRegion(point)
-    this.setState({markerPoint: point, region })
+    // this.setState({markerPoint: point, region })
   }
 
   getPoint = point => {
@@ -104,7 +102,6 @@ class Map extends React.PureComponent {
 
   componentWillReceiveProps(props){
     const {navigation: {state: { params }}} = props;
-    console.log('params: ', params);
     if(params && params.selectedLocation){
       const {selectedLocation} = params
       this.setLocation(selectedLocation)
@@ -120,15 +117,15 @@ class Map extends React.PureComponent {
 
     return (
       <MainView>
-
         {enableSearch && <Button
           title='Search Hospital'
           onClick={()=>this.props.navigation.navigate('SearchLocation')}
-          variant='grey'
-          bgColor='white'
+          variant='map'
           icon='search'
           iconColor='black'
-
+          block='80%'
+          top={60}
+          noCenter={true}
         />}
 
         <Animated

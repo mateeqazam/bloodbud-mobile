@@ -1,17 +1,20 @@
 import styled, { css } from 'styled-components';
 
-export const ButtonWrapper = styled.View`
+export const ButtonWrapper = styled.TouchableOpacity`
   flex-direction: row;
-  backgroundColor: ${props => props.bgColor || 'transparent'};
   padding: 10px;
-  ${props => !!props.marginLeft && css`marginLeft: ${props.marginLeft}`};
+  alignItems: center;
   borderRadius: 5px;
-  justify-content: center;
+  backgroundColor: ${props => props.bgColor || 'transparent'};
+  ${props => !!props.marginLeft && css`marginLeft: ${props.marginLeft}`};
+  ${props => !!props.top && css`top: ${props.top}`};
+  ${props => !!props.block && css`width: ${props.block}`};
+  ${props => !props.noCenter && css`justifyContent: center`};
 `
 
-export const TouchableOpacity = styled.TouchableOpacity`
-  paddingVertical: 10;
-  ${props => !!props.block && css`width: ${props.block}`};
+export const Wrapper = styled.View`
+  zIndex:1;
+  alignItems: center;
 `
 
 export const Text = styled.Text`

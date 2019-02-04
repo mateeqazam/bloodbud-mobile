@@ -9,68 +9,58 @@ import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
-import { createStackNavigator } from 'react-navigation'
+import Input from '../../widgets/Input'
+import BloodGroup from '../../widgets/BloodGroup'
 
 import {
   MainView,
-  MainWrapper,
-  InfoView,
-  Logo,
-  ProfileView,
   Wrapper,
-  Info
+  Dropdown,
 } from './styles';
 
 class BloodRequest extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Blood Request</Text>,
-      headerLeft: (
-        <Button
-        onClick={()=>navigation.toggleDrawer()}
-        icon='bars'
-        iconColor='black'
-        />
-      ),
+      headerTitle: 'Request',
+      onBackPress: () => navigation.pop(),
+    }
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      bloodGroup: '',
+      bloodUnit: ''
     }
   }
 
   render() {
-    let arr = []
-    for (let i=0;i<9;i++){
-      arr.push(
-        <Wrapper key={i}>
-        <ProfileView>
-          <Logo source={{uri: 'https://facebook.github.io/react/logo-og.png'}} />
-          <InfoView>
-              <Text fontWeight='bold'>{`Ali ${i}`}</Text>
-              <Info>
-                <Text>Age:</Text>
-                <Text fontWeight='bold'>{` ${i}  `}</Text>
-                <Text>- Blood</Text>
-                <Text fontWeight='bold'>{`  AB+ `}</Text>
-              </Info>
-          </InfoView> 
-        </ProfileView>
-        <Button
-          title="Request"
-          onClick={()=>this.props.navigation.navigate('BloodGroup')}
-          variant='default'
-        />
-      </Wrapper>
-      )
-    }
+    const {bloodGroup,bloodUnit} = this.state
 
     return (
       <MainView>
-        <MainWrapper>
-          {arr}
-        </MainWrapper>
+          <BloodGroup
+          selectedValue = {bloodGroup}
+          onValueChange={bloodGroup => this.setState({bloodGroup}) }
+          />
+        <Wrapper>
+        <Dropdown
+        selectedValue={bloodUnit}
+        style={{ height: 50, width: '100%' }}
+        onValueChange={bloodUnit => this.setState({bloodUnit})}
+        >
+        <Dropdown.Item label="Select Blood Unit" value="" />
+        <Dropdown.Item label="1" value="1" />
+        <Dropdown.Item label="2" value="2" />
+        <Dropdown.Item label="3" value="3" />
+        </Dropdown>
+        </Wrapper>
+        <Wrapper>
+        <Input type='default' placeholder='Relation with needy person' onChangeText={ relation => this.setState({relation })} />
+        </Wrapper>
       </MainView>
-    );
+    )
   }
 }
-export default createStackNavigator({
-  BloodRequest,
-})
+export default BloodRequest

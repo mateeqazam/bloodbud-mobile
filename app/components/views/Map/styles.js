@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 export const MainView = styled.View`
-display:flex;
+  marginTop:-80;
 `
-
 
 
 export const customMapStyle = [

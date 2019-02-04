@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const MainView = styled.ScrollView`
-    padding:10px;
-    marginTop:15px;
+    marginTop:1px;
 `
 
 export const Wrapper = styled.View`
