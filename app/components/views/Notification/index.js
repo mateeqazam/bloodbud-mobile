@@ -38,11 +38,6 @@ class Notification extends React.PureComponent {
   render() {
     const mapStyle = {
       height: 250,
-      position: 'relative',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
     };
     let user = Auth && Auth.user ? Auth.user : ''
     return (
