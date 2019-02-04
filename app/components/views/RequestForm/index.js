@@ -59,6 +59,7 @@ class RequestForm extends React.PureComponent {
           top={bottomBtn}
         />
         <Map
+          mapMarginTop={-80}
           mapStyle={mapStyle}
           enableSearch={true}
           locationInfo={info => this.setState({info})}

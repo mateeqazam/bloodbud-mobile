@@ -10,13 +10,13 @@ export const Pic = styled.Image`
 export const Container = styled.View`
   flex:1;
   backgroundColor:white;
-  justify-content: space-between;
 `
 
 export const Btns = styled.View`
+  marginTop:35px;
   justify-content: space-around;
   flex-direction:row;
-`;
+`
 
 export const Wrap = styled.View`
   alignItems: center;

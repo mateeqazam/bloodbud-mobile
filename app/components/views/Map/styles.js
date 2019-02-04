@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const MainView = styled.View`
-  marginTop:-80;
+  ${props => !!props.mapMarginTop && css`marginTop: ${props.mapMarginTop}`};
 `
+
 
 
 export const customMapStyle = [

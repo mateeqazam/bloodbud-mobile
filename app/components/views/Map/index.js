@@ -109,14 +109,14 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const { mapStyle, enableSearch } = this.props
+    const { mapStyle, enableSearch, mapMarginTop } = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
     const {region, markerPoint} = this.state
 
     return (
-      <MainView>
+      <MainView mapMarginTop={mapMarginTop}>
         {enableSearch && <Button
           title='Search Hospital'
           onClick={()=>this.props.navigation.navigate('SearchLocation')}
