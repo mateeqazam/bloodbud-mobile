@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-export const MainView = styled.View`
-`;
+export const MainView = styled.ScrollView`
+  backgroundColor:white;
+  flex:1;
+  padding:10px;
+`
+
+
+export const Row = styled.View`
+  flexDirection:row;
+  justifyContent: space-around;
+`
 
 export const Dropdown = styled.Picker`
 `
-
-export const Wrapper = styled.View`
-  borderRadius:5px;
-  marginTop:10px;
-  display: flex;
-  flex-direction:row;
-  justify-content: space-between;
-  padding:10px;
-`;

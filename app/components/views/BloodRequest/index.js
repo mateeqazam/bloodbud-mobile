@@ -6,19 +6,19 @@
 
 import React from 'react';
 import { View } from 'react-native';
-// import PropTypes from 'prop-types';
 import Text from '../../widgets/Text'
 import Button from '../../widgets/Button'
 import Input from '../../widgets/Input'
 import BloodGroup from '../../widgets/BloodGroup'
+import { CheckBox } from 'react-native-elements'
 
 import {
   MainView,
-  Wrapper,
+  Row,
   Dropdown,
 } from './styles';
 
-class BloodRequest extends React.PureComponent {
+class BloodRequest extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
@@ -30,9 +30,27 @@ class BloodRequest extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
+      activeType: 'Red Blood Cells',
       bloodGroup: '',
       bloodUnit: ''
     }
+  }
+
+  renderBtn = title => {
+    const {activeType} = this.state
+    return (
+      <Button
+        marginTop={10}
+        title={title}
+        onClick={()=>this.setState({activeType:title})}
+        variant={activeType===title?'success':'grey'}
+        block='150px'
+      />
+    )
+  }
+
+  validateForm = () => {
+    return this.props.navigation.navigate('RequestForm')
   }
 
   render() {
@@ -40,25 +58,44 @@ class BloodRequest extends React.PureComponent {
 
     return (
       <MainView>
-          <BloodGroup
+        <Text>Blood Type Required</Text>
+        <Row>
+          {this.renderBtn('Red Blood Cells')}
+          {this.renderBtn('Plasma')}
+        </Row>
+        <Row>
+          {this.renderBtn('White Blood Cells')}
+          {this.renderBtn('Platelets')}
+        </Row>
+        <BloodGroup
           selectedValue = {bloodGroup}
           onValueChange={bloodGroup => this.setState({bloodGroup}) }
-          />
-        <Wrapper>
+        />
         <Dropdown
-        selectedValue={bloodUnit}
-        style={{ height: 50, width: '100%' }}
-        onValueChange={bloodUnit => this.setState({bloodUnit})}
+          selectedValue={bloodUnit}
+          onValueChange={bloodUnit => this.setState({bloodUnit})}
         >
-        <Dropdown.Item label="Select Blood Unit" value="" />
-        <Dropdown.Item label="1" value="1" />
-        <Dropdown.Item label="2" value="2" />
-        <Dropdown.Item label="3" value="3" />
+          <Dropdown.Item label="Select Blood Unit" value="" />
+          <Dropdown.Item label="1" value="1" />
+          <Dropdown.Item label="2" value="2" />
+          <Dropdown.Item label="3" value="3" />
         </Dropdown>
-        </Wrapper>
-        <Wrapper>
-        <Input type='default' placeholder='Relation with needy person' onChangeText={ relation => this.setState({relation })} />
-        </Wrapper>
+
+        <CheckBox
+          title='Pick and Drop Facility for Donor'
+          checked={this.state.checked}
+          onPress={() => this.setState({checked: !this.state.checked})}
+        />
+
+        <Input icon='edit' width='100%' type='default' placeholder='Add note' onChangeText={ relation => this.setState({relation })} />
+
+        <Button
+          marginTop={10}
+          title="Send Request"
+          onClick={this.validateForm}
+          variant='default'
+          block='80%'
+        />
       </MainView>
     )
   }
