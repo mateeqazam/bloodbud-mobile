@@ -12,6 +12,7 @@ export const InfoView = styled.View`
 `
 
 export const Container = styled.ScrollView`
+  backgroundColor:white;
   flex:1;
   paddingHorizontal:18;
   paddingTop: 10;

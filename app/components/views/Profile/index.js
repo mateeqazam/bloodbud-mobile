@@ -5,14 +5,13 @@
 */
 
 import React from 'react';
-import { Alert, Picker } from 'react-native';
+import { Picker } from 'react-native'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import Button from '../../widgets/Button'
 import Icon from '../../widgets/Icon'
 import Text from '../../widgets/Text'
 import Input from '../../widgets/Input'
 import BloodGroup from '../../widgets/BloodGroup'
-import Modal from '../../widgets/Modal'
 import Slider from "react-native-slider";
 
 import {
@@ -30,15 +29,8 @@ class Profile extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Profile</Text>,
-      headerLeft: (
-        <Button
-          marginLeft={9}
-          onClick={()=>{}}
-          icon='bars'
-          iconColor='black'
-        />
-      ),
+      headerTitle: 'Settings',
+      onBackPress: () => navigation.pop()
     }
   }
 
@@ -71,7 +63,13 @@ class Profile extends React.PureComponent {
     return (
       <Wrapper onPress={()=>{
           if(icon === 'calendar') return this.setState({[icon]: true, modalVisible: attribute})
-          this.setState({modalVisible: attribute})
+          this.props.navigation.navigate('UpdateSettings',
+            {
+              attribute,
+              val
+            })
+
+          // this.setState({modalVisible: attribute})
         }}>
         
         <Icon marginTop={7} fontSize={22} name={icon} />
@@ -106,7 +104,7 @@ class Profile extends React.PureComponent {
 
       Auth.updateUserAttributes(user, {
         [key]: text
-        // 'custom:attached_device': text
+        // 'custom:attribute': text
         }).then(result => {
           console.log('updateUserAttributes', result);
         }).catch(err => {
@@ -183,12 +181,6 @@ class Profile extends React.PureComponent {
           onConfirm={this._handleDatePicked}
           onCancel={this._hideDateTimePicker}
         />
-        <Modal
-          toggleModal={this.toggleModal}
-          modalVisible={modalVisible}
-          value={value}
-        />
-
       </Container>
     );
   }

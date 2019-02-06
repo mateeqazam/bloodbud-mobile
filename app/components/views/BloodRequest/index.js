@@ -94,7 +94,7 @@ class BloodRequest extends React.Component {
           title="Send Request"
           onClick={this.validateForm}
           variant='default'
-          block='80%'
+          block='100%'
         />
       </MainView>
     )

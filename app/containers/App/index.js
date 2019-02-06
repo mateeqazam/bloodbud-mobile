@@ -18,24 +18,31 @@ import Profile from '../../components/views/Settings';
 import BloodGroup from '../../components/views/BloodGroup';
 import BloodRequest from '../../components/views/BloodRequest';
 import RequestForm from '../../components/views/RequestForm';
-import Settings from '../../components/views/Profile';
+import Settings from '../../components/views/Profile'
+import UpdateSettings from '../../components/views/Profile/updateSettings'
 import Notification from '../../components/views/Notification';
 import SearchLocation from '../../components/views/SearchLocation';
-import Icon from '../../components/widgets/Icon';
-import { Text } from 'react-native';
 
-const MainNavigator = createStackNavigator({
-  RequestForm,
+
+const SettingsNavigator = createStackNavigator({
+  Settings,
+  UpdateSettings,
+})
+
+
+const FormNavigator = createStackNavigator({
   BloodRequest,
+  RequestForm,
   SearchLocation,
-});
+})
+
 
 const TabNavigator = createBottomTabNavigator(
   {
-    RequestForm: MainNavigator,
+    Settings:SettingsNavigator,
+    RequestForm: FormNavigator,
     Notification,
     Profile,
-    Settings,
   },
   {
     navigationOptions: ({ navigation }) => ({
