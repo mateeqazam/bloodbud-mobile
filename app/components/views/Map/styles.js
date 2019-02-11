@@ -1,7 +1,6 @@
 import styled, {css} from 'styled-components';
 
 export const MainView = styled.View`
-  ${props => !!props.mapMarginTop && css`marginTop: ${props.mapMarginTop}`};
 `
 
 

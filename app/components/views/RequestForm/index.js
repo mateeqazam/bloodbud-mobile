@@ -22,11 +22,7 @@ import {
 
 class RequestForm extends React.PureComponent {
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: 'Blood Request Form',
-    }
-  }
+  static navigationOptions = { header: null }
 
   constructor(props) {
     super(props)
@@ -47,18 +43,19 @@ class RequestForm extends React.PureComponent {
     const mapStyle = {
       height
     }
-    const bottomBtn = height - 200
+    const bottomBtn = height - 240
+
     return (
       <MainView>
         <Button
           title="Confirm Location"
           onClick={this.validateForm}
           variant='default'
-          block='80%'
+          block='80'
+
           top={bottomBtn}
         />
         <Map
-          mapMarginTop={-80}
           mapStyle={mapStyle}
           enableSearch={true}
           locationInfo={info => this.setState({info})}

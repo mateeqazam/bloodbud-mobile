@@ -74,8 +74,7 @@ class Map extends React.PureComponent {
 
   setLocation = (location) => {
     let loc = location.geometry.location
-    loc.title = location.formatted_address
-    console.log('loc: ', loc);
+    loc.title = location.name
     this.props.locationInfo(loc.title)
     const point = {
       latitude:loc.lat,
@@ -109,22 +108,22 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const { mapStyle, enableSearch, mapMarginTop } = this.props
+    const { mapStyle, enableSearch } = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
     const {region, markerPoint} = this.state
-
+    let title = 'Search Hospital'
+    if(markerPoint && markerPoint.title) title = markerPoint.title
     return (
-      <MainView mapMarginTop={mapMarginTop}>
+      <MainView>
         {enableSearch && <Button
-          title='Search Hospital'
+          title={title}
           onClick={()=>this.props.navigation.navigate('SearchLocation')}
           variant='map'
           icon='search'
           iconColor='black'
-          block='80%'
-          top={60}
+          top={120}
           noCenter={true}
         />}
 
