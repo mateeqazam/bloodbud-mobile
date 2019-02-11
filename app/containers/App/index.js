@@ -14,35 +14,32 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import SignUp from '../../components/views/SignUp';
 import SignIn from '../../components/views/SignIn';
-import Profile from '../../components/views/Settings';
+import Settings from '../../components/views/Settings';
 import BloodGroup from '../../components/views/BloodGroup';
 import BloodRequest from '../../components/views/BloodRequest';
 import RequestForm from '../../components/views/RequestForm';
-import Settings from '../../components/views/Profile'
+import Profile from '../../components/views/Profile'
 import UpdateSettings from '../../components/views/Profile/updateSettings'
 import Notification from '../../components/views/Notification';
 import SearchLocation from '../../components/views/SearchLocation';
 
-
 const SettingsNavigator = createStackNavigator({
-  Settings,
+  Profile,
   UpdateSettings,
 })
 
-
 const FormNavigator = createStackNavigator({
-  BloodRequest,
   RequestForm,
+  BloodRequest,
   SearchLocation,
 })
 
-
 const TabNavigator = createBottomTabNavigator(
   {
-    Settings:SettingsNavigator,
     RequestForm: FormNavigator,
+    Profile:SettingsNavigator,
     Notification,
-    Profile,
+    Settings,
   },
   {
     navigationOptions: ({ navigation }) => ({

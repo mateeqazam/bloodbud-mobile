@@ -12,10 +12,9 @@ import { ButtonWrapper, Wrapper } from './styles'
 import Text from '../Text'
 import Icon from '../Icon'
 
-
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, block, icon, iconColor, marginLeft,noCenter, ...restProps } = this.props
+    const { onClick, title, variant, icon, iconColor, ...restProps } = this.props
 
     let color = variant === 'grey' ? 'black' : 'white'
     let { bgColor } = this.props
@@ -45,9 +44,8 @@ class Button extends React.Component {
     }
     return (
       <Wrapper {...restProps} >
-        <ButtonWrapper noCenter={noCenter} block={block} onPress={onClick} marginLeft={marginLeft} bgColor={bgColor} >
+        <ButtonWrapper onPress={onClick} bgColor={bgColor} {...restProps}>
           {icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />}
-
           <Text color={color}>{title}</Text>
         </ButtonWrapper>
       </Wrapper>
