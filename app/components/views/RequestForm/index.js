@@ -43,7 +43,7 @@ class RequestForm extends React.PureComponent {
     const mapStyle = {
       height
     }
-    const bottomBtn = height - 240
+    const bottomBtn = height - 140
 
     return (
       <MainView>
@@ -51,8 +51,7 @@ class RequestForm extends React.PureComponent {
           title="Confirm Location"
           onClick={this.validateForm}
           variant='default'
-          block='80'
-
+          block='80%'
           top={bottomBtn}
         />
         <Map

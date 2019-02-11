@@ -123,6 +123,7 @@ class Map extends React.PureComponent {
           variant='map'
           icon='search'
           iconColor='black'
+          block='80%'
           top={120}
           noCenter={true}
         />}

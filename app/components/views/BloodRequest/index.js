@@ -91,7 +91,7 @@ class BloodRequest extends React.Component {
 
         <Button
           marginTop={10}
-          title="Send Request"
+          title="Submit Request"
           onClick={this.validateForm}
           variant='default'
           block='100%'
