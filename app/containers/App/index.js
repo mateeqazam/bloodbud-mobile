@@ -21,7 +21,13 @@ import RequestForm from '../../components/views/RequestForm';
 import Profile from '../../components/views/Profile'
 import UpdateSettings from '../../components/views/Profile/updateSettings'
 import Notification from '../../components/views/Notification';
+import NotificationDetail from '../../components/views/Notification/notification'
 import SearchLocation from '../../components/views/SearchLocation';
+
+const NotificationNavigator = createStackNavigator({
+  Notification,
+  NotificationDetail,
+})
 
 const SettingsNavigator = createStackNavigator({
   Profile,
@@ -36,9 +42,9 @@ const FormNavigator = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Notification: NotificationNavigator,
+    Profile: SettingsNavigator,
     RequestForm: FormNavigator,
-    Profile:SettingsNavigator,
-    Notification,
     Settings,
   },
   {

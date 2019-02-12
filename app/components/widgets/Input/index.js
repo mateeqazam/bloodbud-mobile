@@ -10,21 +10,11 @@ import { InputFieldWrapper, InputWrapper, StyledIcon } from './styles';
 
 class Input extends React.Component {
   render() {
-    const { icon, type, placeholder, secureTextEntry, onChangeText, width, value } = this.props
-
+    const { icon, ...restProps } = this.props
     return (
       <InputFieldWrapper >
-        {icon && <StyledIcon  name={icon} />}
-        <InputWrapper
-          width={width}
-          onChangeText={text=>onChangeText(text)}
-          value={value}
-          textcolor='black'
-          secureTextEntry={secureTextEntry}
-          keyboardType={type}
-          placeholder={placeholder}
-          underlineColorAndroid="transparent"
-        />
+        {icon && <StyledIcon name={icon} />}
+        <InputWrapper {...restProps} />
       </InputFieldWrapper>
     )
   }
