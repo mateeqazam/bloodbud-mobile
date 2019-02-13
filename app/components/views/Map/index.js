@@ -26,6 +26,8 @@ class Map extends React.PureComponent {
     this.state = {
       locationSearch:''
     }
+    const {showLocation} = props
+    if(showLocation) this.getLocationDetails(showLocation)
   }
 
   componentDidMount() {
@@ -73,9 +75,10 @@ class Map extends React.PureComponent {
   }
 
   setLocation = (location) => {
+    const {locationInfo} = this.props
     let loc = location.geometry.location
     loc.title = location.name
-    this.props.locationInfo(loc.title)
+    if(locationInfo) this.props.locationInfo(loc.title)
     const point = {
       latitude:loc.lat,
       longitude:loc.lng,
@@ -84,7 +87,6 @@ class Map extends React.PureComponent {
       longitudeDelta,
     }
     // this._storeData(location)
-
     const region = new AnimatedRegion(point)
     this.setState({region, markerPoint: point, regionChanged: true})
   }

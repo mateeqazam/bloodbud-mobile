@@ -14,7 +14,7 @@ import Icon from '../Icon'
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, icon, iconColor, ...restProps } = this.props
+    const { onClick, title, variant, icon, iconColor, fontSize, ...restProps } = this.props
 
     let color = variant === 'grey' ? 'black' : 'white'
     let { bgColor } = this.props
@@ -42,11 +42,13 @@ class Button extends React.Component {
           color = 'black'
           break
     }
+
+
     return (
       <Wrapper {...restProps} >
         <ButtonWrapper onPress={onClick} bgColor={bgColor} {...restProps}>
           {icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />}
-          <Text color={color}>{title}</Text>
+          <Text fontSize={fontSize || 14} color={color}>{title}</Text>
         </ButtonWrapper>
       </Wrapper>
     )

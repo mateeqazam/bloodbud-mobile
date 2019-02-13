@@ -25,7 +25,12 @@ import {
 
 class Notification extends React.PureComponent {
 
-
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Donation Needed',
+      onBackPress: () => navigation.pop()
+    }
+  }
 
   onShare = async () => {
     try {
@@ -55,7 +60,28 @@ class Notification extends React.PureComponent {
     } catch (error) {
       alert(error.message);
     }
-  };
+  }
+
+  openApp = (url) => {
+    Linking.canOpenURL(url)
+    .then((supported) => {
+      if (!supported) {
+        alert("unable to open app")
+      } else {
+        return Linking.openURL(url);
+      }
+    })
+    .catch((err) => console.error('An error occurred', err))
+  }
+
+  showElement(key,value){
+    return (
+      <Wrap>
+        <Text >{key}</Text>
+        <Text>{value}</Text>
+      </Wrap>
+    )
+  }
 
   render() {
     const mapStyle = {
@@ -64,45 +90,46 @@ class Notification extends React.PureComponent {
     }
 
     let user = Auth && Auth.user ? Auth.user : ''
+    const mapUrl = 'https://www.google.com/maps?ll=31.5204,74.3587'
+    const sms = 'sms:03336037007?body=I saw your post, I can help'
+              // Linking.openURL('fb://app')
     return (
       <Container>
-        <Wrap>
-          <Pic source={{ uri: 'https://facebook.github.io/react/logo-og.png' }} />
-          <Text>{user ? user.username : ''}</Text>
-          <Text>Need AB+ Blood Group</Text>
-        </Wrap>
-        {<Map mapStyle={mapStyle} />}
 
+        {this.showElement('Blood Group','AB+')}
+        {this.showElement('Blood Type','RBC')}
 
-          <Button
-            title='Jinnah Hospital'
-            bgColor='transparent'
-            variant='grey'
-            onClick={()=>Linking.openURL('https://www.google.com/maps?ll=37.484847,-122.148386')}
-          />
+        <Text borderBottomWidth='1px' paddingVertical='20px' >Pick and Drop Facility is available</Text>
+        <Text paddingVertical='20px' >Notes: Need Urgent Help!</Text>
 
+        <Map showLocation='31.4845414,74.2973885999999' mapStyle={mapStyle} />
+
+        <Button
+          noCenter
+          btnPadding='1px'
+          block='100%'
+          title='Jinnah Hospital'
+          bgColor='transparent'
+          variant='grey'
+          fontSize={16}
+          icon='mapMarker'
+          iconColor='tomato'
+          onClick={()=>this.openApp(mapUrl)}
+        />
+        <Text marginTop='10px' fontSize={16}>{`Requested By: ${user ? user.username : 'zubair'}`}</Text>
 
         <Btns>
-
           <Button
             title='Share Request'
+            block={'80%'}
             variant='grey'
             onClick={this.onShare}
           />
 
           <Button
+            block={'80%'}
             title='Offer Help'
-            onClick={() => {
-              
-
-              // Linking.openURL('sms:03336037007?body=blood needed')
-              Linking.openURL('whatsapp://send?text=Blood Request')
-              // Linking.openURL('whatsapp://send?text=hello&phone=923336037007')
-              // Linking.openURL('insta://app')
-              // Linking.openURL('fb://app')
-              // 
-              // Linking.openURL('tel:03336037007')
-            }}
+            onClick={() => this.openApp(sms)}
             variant='success'
           />
         </Btns>
@@ -111,4 +138,4 @@ class Notification extends React.PureComponent {
   }
 }
 
-export default withAuthenticator(Notification)
+export default (Notification)

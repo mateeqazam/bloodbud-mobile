@@ -26,14 +26,15 @@ class SearchLocation extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: 'Search Hospital',
-      onBackPress: () => navigation.pop(),
+      onBackPress: () => navigation.pop()
     }
   }
 
   _retrieveData = async (key) => {
     try {
       let value = await AsyncStorage.getItem(key);
-      return value = JSON.parse(value)
+      console.log('value: ', value)
+      return value ? JSON.parse(value) : '31.5204 , 74.3587'
     } catch (e) {
       console.log('Error retrieving data: ', e);
     }
@@ -61,6 +62,7 @@ class SearchLocation extends React.Component {
   }
 
   openLocation(obj){
+    console.log('obj: ', obj);
     const {navigation:{navigate}} = this.props
     const isHospital = obj.types.indexOf('hospital')
     const isHealth = obj.types.indexOf('health')

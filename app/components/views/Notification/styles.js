@@ -14,23 +14,28 @@ export const Container = styled.ScrollView`
 `
 
 export const Btns = styled.View`
-  marginTop:35px;
+  marginTop:30px;
   justifyContent: space-around;
   flex-direction:row;
 `
-
-export const Wrap = styled.View`
-  alignItems: center;
-`
-
 
 export const Wrapper = styled.TouchableOpacity`
 	flex-direction: row;
 	paddingVertical: 10;
 	borderBottomWidth:1px;
-	borderBottomColor:lightgray;
+  borderBottomColor:lightgray;
+`
+
+export const Wrap = styled.TouchableOpacity`
+  paddingVertical:20px;
+  justifyContent: space-between;
+  flex-direction:row;
+	borderBottomWidth:1px;
+  borderBottomColor:lightgray;
+
 `
 
 export const InfoView = styled.View`
+  marginRight: 80;
   paddingHorizontal: 15px;
 `
