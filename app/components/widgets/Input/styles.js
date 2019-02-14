@@ -3,15 +3,16 @@ import Icon from '../Icon';
 
 export const InputFieldWrapper = styled.View`
 	${props => !!props.marginVertical && css`marginVertical: ${props.marginVertical}`};
-	borderBottomWidth: 1;
+	${props => !props.noBorder && css`borderBottomWidth: 1`};
   flexDirection:row;
 `
 
-export const InputWrapper = styled.TextInput` 
+export const InputWrapper = styled.TextInput`
   ${props => !!props.height && css`height: ${props.height}`};
   ${props => !!props.width && css`width: ${props.width}`};
   fontSize: ${props => (props.fontSize || 13)};
 `
+
 // fontFamily: ${props => (props.fontFamilyLabel || props.theme.fontFamily)};
 // display: flex;
 // color: black;

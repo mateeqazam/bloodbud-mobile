@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const Pic = styled.Image`
-  width: 150;
-  height: 150;
-  borderRadius: 150;
-  margin:15px;
-`
-
-export const InfoView = styled.View`
-  paddingHorizontal: 15px;
-`
-
 export const Container = styled.ScrollView`
   backgroundColor:white;
   flex:1;
@@ -18,12 +7,9 @@ export const Container = styled.ScrollView`
   paddingTop: 10;
 `
 
-export const Wrap = styled.View`
-  alignItems: center;
-  backgroundColor:black;
-`
-
-export const Wrapper = styled.TouchableOpacity`
+export const Wrapper = styled.View`
   flex-direction:row;
-  paddingVertical:15;
+  justifyContent:space-between;
+  paddingVertical:10;
+  /* borderBottomWidth:1; */
 `

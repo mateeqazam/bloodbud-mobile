@@ -16,9 +16,6 @@ import Slider from "react-native-slider";
 
 import {
   Container,
-  Pic,
-  Wrap,
-  InfoView,
   Wrapper
 } from './styles'
 
@@ -28,9 +25,18 @@ import { Auth } from 'aws-amplify'
 class Profile extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
+    const {params} = navigation.state
     return {
-      headerTitle: 'Settings',
-      onBackPress: () => navigation.pop()
+      headerTitle: 'Profile',
+
+      headerRight: (
+        <Button
+          onPress={()=>{}}
+          title='Save'
+          marginRight={20}
+          variant='success'
+        />
+      ),
     }
   }
 
@@ -57,26 +63,29 @@ class Profile extends React.PureComponent {
   }
 
 
+  componentDidMount() {
+    this.props.navigation.setParams({
+        handleThis: this.saveForm
+    });
+  }
+
+  saveForm = () => {
+    console.log('func',this);
+  }
+
   showElement(key,icon,attribute){
     let val = this.state[attribute] || ''
     val = key === 'Password' ? '******' : val
     return (
-      <Wrapper onPress={()=>{
+      <Wrapper>
+        <Text marginTop={10} >{key}</Text>
+        <Input onFocus={()=>{
           if(icon === 'calendar') return this.setState({[icon]: true, modalVisible: attribute})
-          this.props.navigation.navigate('UpdateSettings',
-            {
-              attribute,
-              val
-            })
+          if(key === 'Password') this.props.navigation.navigate('UpdateSettings')
 
-          // this.setState({modalVisible: attribute})
-        }}>
-        
-        <Icon marginTop={7} fontSize={22} name={icon} />
-        <InfoView>
-          <Text>{key}</Text>
-          <Text>{val}</Text>
-        </InfoView>
+        }} height={40} noBorder={true} value={val} type='default' onChangeText={ text => {
+          if(icon === 'calendar') return this.setState({[icon]: true, modalVisible: attribute})
+          this.setState({ [attribute]: text })}} />
       </Wrapper>
     )
   }
@@ -110,7 +119,6 @@ class Profile extends React.PureComponent {
         }).catch(err => {
           console.log('error is aws update user  ',err)
         })
-
     }
     this.setState({modalVisible})
   }
@@ -169,8 +177,6 @@ class Profile extends React.PureComponent {
             })
           }}
         />
-
-
 
         <DateTimePicker
           date={new Date(631134000000)}

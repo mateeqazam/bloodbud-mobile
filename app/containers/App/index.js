@@ -26,22 +26,22 @@ const NotificationNavigator = createStackNavigator({
   NotificationDetail,
 })
 
-const SettingsNavigator = createStackNavigator({
+const ProfileNavigator = createStackNavigator({
   Profile,
   UpdateSettings,
 })
 
 const FormNavigator = createStackNavigator({
-  FormSuccess,
   RequestForm,
   SearchLocation,
   BloodRequest,
+  FormSuccess,
 })
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Profile: ProfileNavigator,
     RequestForm: FormNavigator,
-    Profile: SettingsNavigator,
     Notification: NotificationNavigator,
     Settings,
   },

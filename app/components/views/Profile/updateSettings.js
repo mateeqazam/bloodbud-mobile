@@ -5,54 +5,39 @@
 */
 
 import React from 'react';
-import Checkbox from '../../widgets/Checkbox'
 import Button from '../../widgets/Button'
-import { createStackNavigator } from 'react-navigation'
 import { View, Text } from 'react-native'
 import Input from '../../widgets/Input'
 
 import {
   Container,
-  Wrapper
 } from './styles';
 
 class UpdateSettings extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Update Settings',
+      headerTitle: 'Change Password',
       onBackPress: () => navigation.pop()
     }
   }
 
   constructor(props){
     super(props)
-    const {navigation: {state: { params }}} = props;
-    let value = ''
-    if(params && params.attribute){
-      const {attribute, val} = params
-      value = val
-      // alert(attribute)
-      // this.setLocation(selectedLocation)
-    }
     this.state = {
-      value
     }
-
   }
 
   render() {
-    const {value} = this.state
     return (
       <Container>
-
-
-        <Input value={value} icon='edit' width='100%' type='default' placeholder='Update Value' onChangeText={ value => this.setState({value})} />
-
+        <Input width='100%' placeholder='Old Password' onChangeText={ old => this.setState({old})} />
+        <Input width='100%' placeholder='New Password' onChangeText={ newPass => this.setState({newPass})} />
+        <Input width='100%' placeholder='Confirm Password' onChangeText={ confirm => this.setState({confirm})} />
 
         <Button
-          marginTop={10}
-          title="Update"
+          marginTop={20}
+          title="Change Password"
           onClick={()=>{}}
           variant='default'
           block='100%'
