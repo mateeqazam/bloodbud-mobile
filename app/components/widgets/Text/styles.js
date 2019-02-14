@@ -12,7 +12,8 @@ export const TextWrapper = styled.Text`
   ${props => !!props.padding && css`padding: ${props.padding}`};
   ${props => !!props.margin && css`margin: ${props.margin}`};
   ${props => !!props.borderBottomWidth && css`borderBottomWidth: ${props.borderBottomWidth}`};
-
+  ${props => !!props.fontWeight && css`fontWeight: ${props.fontWeight}`};
+  ${props => !!props.textAlign && css`textAlign: ${props.textAlign}`};
   /* font-family: ${(props) => {
     if (props.fontWeight === 'light') return 'Segoeui-Light';
     if (props.fontWeight === 'semiLight') return 'Segoeui-SemiLight';

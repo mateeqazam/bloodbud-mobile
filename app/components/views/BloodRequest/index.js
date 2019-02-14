@@ -50,7 +50,7 @@ class BloodRequest extends React.Component {
   }
 
   validateForm = () => {
-    return this.props.navigation.navigate('RequestForm')
+    return this.props.navigation.navigate('FormSuccess')
   }
 
   render() {

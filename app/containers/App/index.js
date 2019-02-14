@@ -9,15 +9,12 @@ import { ThemeProvider } from 'styled-components';
 import {
   createBottomTabNavigator,
   createStackNavigator,
-  createDrawerNavigator,
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import SignUp from '../../components/views/SignUp';
-import SignIn from '../../components/views/SignIn';
 import Settings from '../../components/views/Settings';
-import BloodGroup from '../../components/views/BloodGroup';
 import BloodRequest from '../../components/views/BloodRequest';
-import RequestForm from '../../components/views/RequestForm';
+import RequestForm from '../../components/views/RequestForm'
+import FormSuccess from '../../components/views/RequestForm/success'
 import Profile from '../../components/views/Profile'
 import UpdateSettings from '../../components/views/Profile/updateSettings'
 import Notification from '../../components/views/Notification';
@@ -35,16 +32,17 @@ const SettingsNavigator = createStackNavigator({
 })
 
 const FormNavigator = createStackNavigator({
+  FormSuccess,
   RequestForm,
-  BloodRequest,
   SearchLocation,
+  BloodRequest,
 })
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Notification: NotificationNavigator,
-    Profile: SettingsNavigator,
     RequestForm: FormNavigator,
+    Profile: SettingsNavigator,
+    Notification: NotificationNavigator,
     Settings,
   },
   {
