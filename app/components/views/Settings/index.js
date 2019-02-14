@@ -32,7 +32,17 @@ class Settings extends React.PureComponent {
         <Text>B+ Needed</Text>
         <Text>Jinnah Hospital</Text>
       </ProfileView>
-      <Text>Edit</Text>
+
+        <Button
+          variant='grey'
+          bgColor='transparent'
+          icon='pencil'
+          iconColor='black'
+          title='Edit'
+          onClick={() => this.props.navigation.navigate('RequestForm')}
+        />
+
+
     </Wrapper>
     )
   }
