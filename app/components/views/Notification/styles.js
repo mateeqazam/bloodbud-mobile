@@ -24,7 +24,7 @@ flex-direction:row;
 justifyContent: space-between;
 `
 
-export const Wrapper = styled.TouchableOpacity`
+export const Wrapper = styled.View`
 	flex-direction: row;
   paddingVertical: 10px;
   paddingHorizontal: 4px;

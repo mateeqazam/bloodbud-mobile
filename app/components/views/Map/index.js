@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { StyleSheet, AsyncStorage } from 'react-native'
-import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Animated } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE, Marker, AnimatedRegion, Animated, Circle } from 'react-native-maps'
 import Button from '../../widgets/Button'
 
 import {
@@ -110,7 +110,7 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    const { mapStyle, enableSearch } = this.props
+    const { mapStyle, enableSearch, showLocation } = this.props
     const styles = StyleSheet.create({
       map: mapStyle
     })
@@ -137,6 +137,12 @@ class Map extends React.PureComponent {
           onRegionChangeComplete={this.onRegionChange}
           onPoiClick={e => this.getPoint(e.nativeEvent.coordinate)}
         >
+          {markerPoint && showLocation && <Circle
+            fillColor={'tomato'}
+            center={markerPoint}
+            radius={500}
+          />}
+
 					{markerPoint && <Marker
               coordinate={markerPoint}
               draggable
