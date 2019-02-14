@@ -89,12 +89,13 @@ class Notification extends React.PureComponent {
       borderRadius:100
     }
 
+    const location = '31.4845414,74.2973885999999'
     let user = Auth && Auth.user ? Auth.user : ''
-    const mapUrl = 'https://www.google.com/maps?ll=31.5204,74.3587'
+    const mapUrl = 'https://www.google.com/maps?ll='+location
     const sms = 'sms:03336037007?body=I saw your post, I can help'
               // Linking.openURL('fb://app')
     return (
-      <Container>
+      <Container paddingHorizontal={10}>
 
         {this.showElement('Blood Group','AB+')}
         {this.showElement('Blood Type','RBC')}
@@ -102,7 +103,7 @@ class Notification extends React.PureComponent {
         <Text borderBottomWidth='1px' paddingVertical='20px' >Pick and Drop Facility is available</Text>
         <Text paddingVertical='20px' >Notes: Need Urgent Help!</Text>
 
-        <Map showLocation='31.4845414,74.2973885999999' mapStyle={mapStyle} />
+        <Map showLocation={location} mapStyle={mapStyle} />
 
         <Button
           noCenter

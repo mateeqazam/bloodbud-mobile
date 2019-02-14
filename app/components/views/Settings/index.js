@@ -21,25 +21,18 @@ class Settings extends React.PureComponent {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: <Text fontSize={16} color="black" fontWeight='bold'>Settings</Text>,
-      headerLeft: (
-        <Button
-        onClick={()=>navigation.toggleDrawer()}
-        icon='bars'
-        iconColor='black'
-        />
-      ),
+      headerTitle: 'My Requests'
     }
   }
 
-  showElement(key,value,icon){
+  showElement(){
     return (
       <Wrapper>
       <ProfileView>
-        <Icon name={icon} />
-        <Text>{`  ${key}`}</Text>
+        <Text>B+ Needed</Text>
+        <Text>Jinnah Hospital</Text>
       </ProfileView>
-      <Text>{value}</Text>
+      <Text>Edit</Text>
     </Wrapper>
     )
   }
@@ -48,12 +41,16 @@ class Settings extends React.PureComponent {
 
     return (
       <MainView>
-        {this.showElement('Name','Ali','user')}
-        {this.showElement('Email','ali@gmail.com','envelope')}
-        {this.showElement('Phone Number','090078601','phone')}
-        {this.showElement('Change Password','*****','lock')}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
+        {this.showElement()}
       </MainView>
     )
   }
 }
-export default Settings //createStackNavigator({Settings})
+export default createStackNavigator({Settings})

@@ -40,10 +40,10 @@ const FormNavigator = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
+    Notification: NotificationNavigator,
+    'My Requests' :Settings,
     Profile: ProfileNavigator,
     RequestForm: FormNavigator,
-    Notification: NotificationNavigator,
-    Settings,
   },
   {
     navigationOptions: ({ navigation }) => ({
@@ -51,7 +51,7 @@ const TabNavigator = createBottomTabNavigator(
         const { routeName } = navigation.state;
         let IconComponent = Ionicons;
         let iconName
-        if (routeName === 'Settings') {
+        if (routeName === 'My Requests') {
           iconName = 'ios-options'
         } else if (routeName === 'RequestForm') {
           iconName = 'ios-create'

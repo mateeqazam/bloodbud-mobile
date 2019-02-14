@@ -20,6 +20,7 @@ import {
   Container,
   Wrapper,
   InfoView,
+  Row,
   Btns,
 } from './styles';
 
@@ -55,25 +56,23 @@ class Notification extends React.PureComponent {
       <Container>
         {arr.map(i => {
           return (
-            <Wrapper key={i}
-              onPress={()=>this.props.navigation.navigate('NotificationDetail')}>
+            <Wrapper key={i}>
+              <Row>
+                <Button
+                  icon='phone'
+                  iconColor='#33CC66'
+                  onPress={()=>this.openApp(phone)}
+                />
+                <InfoView onPress={()=>this.props.navigation.navigate('NotificationDetail')} >
+                  <Text>{'AB+ Blood Needed'}</Text>
+                  <Text>{'Jinnah Hospital Lahore'}</Text>
+                </InfoView>
+              </Row>
               <Button
-                icon='phone'
-                iconColor='#33CC66'
-                onPress={()=>this.openApp(phone)}
-              />
-              <InfoView>
-                <Text>{'AB+ Blood Needed'}</Text>
-                <Text>{'Jinnah Hospital Lahore'}</Text>
-              </InfoView>
-
-              <Button
-                left={0}
                 icon='whatsapp'
                 iconColor='#33CC66'
                 onPress={()=>this.openApp(whatsaPPUrl)}
               />
-
             </Wrapper>
           )
         }

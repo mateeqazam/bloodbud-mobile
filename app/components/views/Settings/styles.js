@@ -1,21 +1,16 @@
 import styled from 'styled-components';
 
-export const MainView = styled.View`
-  marginTop:50px;
-`;
+export const MainView = styled.ScrollView`
+`
 
 export const ProfileView = styled.View`
-  display: flex;
-  justify-content: space-between;
-  flex-direction:row;
-`;
+`
 
 export const Wrapper = styled.View`
-  borderBottomWidth:1px;
-  borderBottomColor:lightgray;
   marginTop:10px;
-  display: flex;
   flex-direction:row;
+  backgroundColor: white;
   justify-content: space-between;
-  padding:15px;
-`;
+marginHorizontal:15px;
+padding:15px;
+`
