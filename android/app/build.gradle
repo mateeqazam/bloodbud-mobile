@@ -138,7 +138,7 @@ android {
 
 dependencies {
     compile project(':react-native-maps')
-    compile project(':react-native-vector-icons')
+    // compile project(':react-native-vector-icons')
     compile project(':amazon-cognito-identity-js')
     implementation project(':react-native-maps')
     implementation fileTree(dir: "libs", include: ["*.jar"])
