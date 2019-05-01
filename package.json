@@ -9,6 +9,11 @@
     "lint": "eslint -c .eslintrc app",
     "lint-fix": "eslint --fix -c .eslintrc app"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
   "jest": {
     "preset": "react-native"
   },
