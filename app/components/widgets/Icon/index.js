@@ -1,8 +1,8 @@
 /**
-*
-* Icon
-*
-*/
+ *
+ * Icon
+ *
+ */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,11 +12,10 @@ import ViewPropTypes from 'bloodbud/app/config/ViewPropTypes';
 import styled, { css } from 'styled-components';
 import parseStyles from './parseStyles';
 
-
 export const Wrapper = styled.View`
-  marginTop: ${props => props.marginTop || 1};
-  paddingHorizontal: 5px;
-`
+  margintop: ${props => props.marginTop || 1};
+  paddinghorizontal: 5px;
+`;
 
 function Icon(props) {
   if (!props || !Icons[props.name]) return null;
@@ -26,7 +25,7 @@ function Icon(props) {
   const styles = parseStyles(style, restProps);
   // console.log('icons',Icons)
   return (
-    <Wrapper marginTop = {marginTop}>
+    <Wrapper marginTop={marginTop}>
       <FontAwesome style={styles}>{Icons[props.name]}</FontAwesome>
     </Wrapper>
   );
