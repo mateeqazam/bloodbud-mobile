@@ -7,9 +7,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import {
+  createAppContainer,
   createBottomTabNavigator,
   createStackNavigator,
-  createAppContainer,
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Settings from '../../components/views/Settings';
@@ -50,7 +50,7 @@ const TabNavigator = createBottomTabNavigator(
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
-        let IconComponent = Ionicons;
+        const IconComponent = Ionicons;
         let iconName;
         if (routeName === 'My Requests') {
           iconName = 'ios-options';
