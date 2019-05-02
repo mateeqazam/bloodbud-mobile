@@ -19,8 +19,6 @@ export const Wrapper = styled.View`
 `;
 
 function Icon(props) {
-  if (!props || !Icons[props.name]) return null;
-
   const { name, style, marginTop, ...restProps } = props;
   delete restProps.align;
   const styles = parseStyles(style, restProps);
