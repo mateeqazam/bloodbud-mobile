@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71522948673",
+    "firebase_url": "https://bloodbud.firebaseio.com",
+    "project_id": "bloodbud",
+    "storage_bucket": "bloodbud.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71522948673:android:18788276b786ab14",
+        "android_client_info": {
+          "package_name": "com.bloodbud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71522948673-89k9kip0o78f9hlse39ncr0rqnvgaa9d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDho0ni65R2wuyvEBoleU_1mqiEB-Yk4C0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71522948673-89k9kip0o78f9hlse39ncr0rqnvgaa9d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

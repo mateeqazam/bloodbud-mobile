@@ -3,6 +3,14 @@ package com.bloodbud;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
+import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+
+import com.google.android.gms.ads.MobileAds;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -27,7 +35,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNGestureHandlerPackage(),
+            new RNFirebasePackage(),
+            new RNFirebaseNotificationsPackage(),
+            new RNFirebaseAdMobPackage(),
+            new RNFirebaseAnalyticsPackage(),
+
+            new RNGestureHandlerPackage(),
             new MapsPackage(),
             new VectorIconsPackage(),
             new RNAWSCognitoPackage()
@@ -49,5 +62,6 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    MobileAds.initialize(this, "ca-app-pub-2838402590110071~6629072780");
   }
 }
