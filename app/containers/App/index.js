@@ -47,7 +47,7 @@ const TabNavigator = createBottomTabNavigator(
     RequestForm: FormNavigator,
   },
   {
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         const IconComponent = Ionicons;
