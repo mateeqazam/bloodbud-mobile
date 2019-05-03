@@ -21,10 +21,6 @@ import { Auth } from 'aws-amplify';
 
 import { Container, Wrapper, InfoView, Row, Btns } from './styles';
 
-// const sampleadUnit = 'ca-app-pub-3940256099942544/6300978111'
-const sampleadUnit = 'ca-app-pub-2838402590110071/6406669364';
-// const unitId = 'ca-app-pub-2838402590110071/5155434934';
-
 class Notification extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -126,19 +122,10 @@ class Notification extends React.PureComponent {
     const Banner = firebase.admob.Banner;
     const AdRequest = firebase.admob.AdRequest;
     const request = new AdRequest();
+    console.log('this.props.navigation', this.props.navigation);
 
     return (
       <Container>
-        <Banner
-          unitId={sampleadUnit}
-          size={'SMART_BANNER'}
-          request={request.build()}
-          onAdLoaded={() => {
-            console.log('Advert loaded');
-          }}
-          onAdFailedToLoad={e => alert(e)}
-        />
-
         {arr.map(i => {
           return (
             <Wrapper key={i}>
