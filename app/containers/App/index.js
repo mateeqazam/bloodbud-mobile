@@ -6,13 +6,23 @@
 
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Text } from 'react-native';
+import { Auth } from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react-native';
+
+import {
+  _storeData,
+  _retrieveData,
+} from '../../components/common/commonMethods';
+
 import {
   createAppContainer,
   createBottomTabNavigator,
   createStackNavigator,
+  createDrawerNavigator,
 } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Settings from '../../components/views/Settings';
+import MyRequests from '../../components/views/Settings';
 import BloodRequest from '../../components/views/BloodRequest';
 import RequestForm from '../../components/views/RequestForm';
 import FormSuccess from '../../components/views/RequestForm/success';
@@ -39,10 +49,50 @@ const FormNavigator = createStackNavigator({
   FormSuccess,
 });
 
+class Logout extends React.PureComponent {
+  async componentDidMount() {
+    const LoggedOut = 'LoggedOut';
+    const isLoggedOut = await _retrieveData(LoggedOut);
+    if (isLoggedOut) {
+      _storeData(LoggedOut, false);
+      return this.props.navigation.navigate('Notification');
+    }
+    Auth.signOut().then(() => {
+      this.props.onStateChange('signIn', {});
+      _storeData(LoggedOut, true);
+    });
+  }
+
+  render() {
+    return <Text>Loading...</Text>;
+  }
+}
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    Notifications: NotificationNavigator,
+    'My Requests': MyRequests,
+    'My Profile': ProfileNavigator,
+    'Request for Blood': FormNavigator,
+    Logout: withAuthenticator(Logout),
+  },
+  {
+    contentOptions: {
+      activeTintColor: '#e91e63',
+      itemsContainerStyle: {
+        marginVertical: 0,
+      },
+      iconContainerStyle: {
+        opacity: 1,
+      },
+    },
+  }
+);
+
 const TabNavigator = createBottomTabNavigator(
   {
     Notification: NotificationNavigator,
-    'My Requests': Settings,
+    'My Requests': MyRequests,
     Profile: ProfileNavigator,
     RequestForm: FormNavigator,
   },
@@ -72,4 +122,4 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(DrawerNavigator);

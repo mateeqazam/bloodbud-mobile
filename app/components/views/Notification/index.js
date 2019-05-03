@@ -9,6 +9,7 @@ import { Linking } from 'react-native';
 // import PropTypes from 'prop-types';
 import { createStackNavigator } from 'react-navigation';
 import firebase from 'react-native-firebase';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Button from '../../widgets/Button';
 import Icon from '../../widgets/Icon';
@@ -25,6 +26,19 @@ const sampleadUnit = 'ca-app-pub-2838402590110071/6406669364';
 // const unitId = 'ca-app-pub-2838402590110071/5155434934';
 
 class Notification extends React.PureComponent {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Donations Needed nearby',
+      headerLeft: (
+        <Button
+          onClick={() => navigation.toggleDrawer()}
+          icon="bars"
+          iconColor="black"
+        />
+      ),
+    };
+  };
+
   async componentDidMount() {
     const channel = new firebase.notifications.Android.Channel(
       'test-channel',
@@ -73,28 +87,23 @@ class Notification extends React.PureComponent {
       })
       .android.setChannelId('test-channel')
       .android.setSmallIcon('ic_launcher')
+      .android.setAutoCancel(true)
       .android.setPriority(firebase.notifications.Android.Priority.Max);
     // // Build an action
-    const action = new firebase.notifications.Android.Action(
-      'test_action',
-      'ic_launcher',
-      'My Test Action'
-    );
+    // const action = new firebase.notifications.Android.Action(
+    //   'test_action',
+    //   'ic_launcher',
+    //   'My Test Action'
+    // );
     // Add the action to the notification
-    notification.android.addAction(action);
+    // notification.android.addAction(action);
 
-    notification.android
-      .setChannelId('test-channel')
-      .android.setSmallIcon('ic_launcher');
+    // notification.android
+    //   .setChannelId('test-channel')
+    //   .android.setSmallIcon('ic_launcher');
 
     // firebase.notifications().displayNotification(notification)
   }
-
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: 'Donations Needed nearby',
-    };
-  };
 
   openApp = url => {
     Linking.canOpenURL(url)
