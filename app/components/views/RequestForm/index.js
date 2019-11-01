@@ -16,6 +16,9 @@ import Map from '../Map';
 
 import { MainView, Wrapper, Dropdown } from './styles';
 
+import client from '../../../apollo';
+import { GET_SITES_QUERY } from '../../../apolloQueries';
+
 class RequestForm extends React.PureComponent {
   static navigationOptions = { header: null };
 
@@ -25,7 +28,17 @@ class RequestForm extends React.PureComponent {
       bloodGroup: '',
       bloodUnit: '',
     };
+    this.test();
   }
+
+  test = async () => {
+    const r = await client.query({
+      query: GET_SITES_QUERY,
+    });
+    const rzlt = JSON.stringify(r);
+    alert(rzlt);
+    console.log('responseFromEmptySlots: ', r);
+  };
 
   validateForm = () => {
     const { info } = this.state;

@@ -12,6 +12,10 @@ import AppNavigator from './app/main';
 
 import { withAuthenticator } from 'aws-amplify-react-native';
 import { Auth } from 'aws-amplify';
+
+import { ApolloProvider } from 'react-apollo';
+import apollo from './app/apollo';
+
 import awsconfig from './aws-exports';
 Auth.configure(awsconfig);
 
@@ -24,7 +28,11 @@ YellowBox.ignoreWarnings([
 
 class App extends React.Component {
   render() {
-    return <AppNavigator />;
+    return (
+      <ApolloProvider client={apollo}>
+        <AppNavigator />
+      </ApolloProvider>
+    );
   }
 }
 
