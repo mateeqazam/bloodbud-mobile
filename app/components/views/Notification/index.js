@@ -1,8 +1,8 @@
 /**
-*
-* Notification
-*
-*/
+ *
+ * Notification
+ *
+ */
 
 import React from 'react';
 import { Linking } from 'react-native';
@@ -13,44 +13,35 @@ import Icon from '../../widgets/Icon';
 import Text from '../../widgets/Text';
 import Map from '../Map';
 
-import { withAuthenticator } from 'aws-amplify-react-native'
-import { Auth } from 'aws-amplify'
+import { withAuthenticator } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify';
 
-import {
-  Container,
-  Wrapper,
-  InfoView,
-  Row,
-  Btns,
-} from './styles';
+import { Container, Wrapper, InfoView, Row, Btns } from './styles';
 
 class Notification extends React.PureComponent {
-
-
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: 'Donations Needed nearby',
-    }
-  }
+    };
+  };
 
-
-  openApp = (url) => {
+  openApp = url => {
     Linking.canOpenURL(url)
-    .then((supported) => {
-      if (!supported) {
-        alert("unable to open app")
-      } else {
-        return Linking.openURL(url);
-      }
-    })
-    .catch((err) => console.error('An error occurred', err))
-  }
+      .then(supported => {
+        if (!supported) {
+          alert('unable to open app');
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch(err => console.error('An error occurred', err));
+  };
 
   render() {
-    const arr = [1,2,3,4,5,6,7,8,9]
-    const number = '923336037007'
-    const phone = 'tel:'+number
-    const whatsaPPUrl = 'whatsapp://send?text=hello&phone='+number
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const number = '923336037007';
+    const phone = 'tel:' + number;
+    const whatsaPPUrl = 'whatsapp://send?text=hello&phone=' + number;
 
     return (
       <Container>
@@ -59,27 +50,30 @@ class Notification extends React.PureComponent {
             <Wrapper key={i}>
               <Row>
                 <Button
-                  icon='phone'
-                  iconColor='#33CC66'
-                  onPress={()=>this.openApp(phone)}
+                  icon="phone"
+                  iconColor="#33CC66"
+                  onPress={() => this.openApp(phone)}
                 />
-                <InfoView onPress={()=>this.props.navigation.navigate('NotificationDetail')} >
+                <InfoView
+                  onPress={() =>
+                    this.props.navigation.navigate('NotificationDetail')
+                  }
+                >
                   <Text>{'AB+ Blood Needed'}</Text>
                   <Text>{'Jinnah Hospital Lahore'}</Text>
                 </InfoView>
               </Row>
               <Button
-                icon='whatsapp'
-                iconColor='#33CC66'
-                onPress={()=>this.openApp(whatsaPPUrl)}
+                icon="whatsapp"
+                iconColor="#33CC66"
+                onPress={() => this.openApp(whatsaPPUrl)}
               />
             </Wrapper>
-          )
-        }
-        )}
+          );
+        })}
       </Container>
     );
   }
 }
 
-export default withAuthenticator(Notification)
+export default Notification;

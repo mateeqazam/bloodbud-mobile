@@ -1,59 +1,67 @@
 /**
-*
-* Button
-*
-*/
+ *
+ * Button
+ *
+ */
 
 import React from 'react';
 import { View } from 'react-native';
 // import PropTypes from 'prop-types';
 
-import { ButtonWrapper, Wrapper } from './styles'
-import Text from '../Text'
-import Icon from '../Icon'
+import { ButtonWrapper, Wrapper } from './styles';
+import Text from '../Text';
+import Icon from '../Icon';
 
 class Button extends React.Component {
   render() {
-    const { onClick, title, variant, icon, iconColor, fontSize, ...restProps } = this.props
+    const {
+      onClick,
+      title,
+      variant,
+      icon,
+      iconColor,
+      fontSize,
+      ...restProps
+    } = this.props;
 
-    let color = variant === 'grey' ? 'black' : 'white'
-    let { bgColor } = this.props
-    switch(variant) {
+    let color = variant === 'grey' ? 'black' : 'white';
+    let { bgColor } = this.props;
+    switch (variant) {
       case 'primary':
-          bgColor = 'red'
-          break;
+        bgColor = 'red';
+        break;
       case 'success':
-          bgColor = 'green'
-          break;
+        bgColor = 'green';
+        break;
       case 'grey':
-          bgColor = bgColor || '#DDDDDD'
-          break;
+        bgColor = bgColor || '#DDDDDD';
+        break;
       case 'default':
-          bgColor = 'black'
-          break;
+        bgColor = 'black';
+        break;
       case 'fb':
-          bgColor = '#3A64B7'
-          break;
+        bgColor = '#3A64B7';
+        break;
       case 'gp':
-          bgColor = '#FF4745'
-          break
+        bgColor = '#FF4745';
+        break;
       case 'map':
-          bgColor = 'white'
-          color = 'black'
-          break
+        bgColor = 'white';
+        color = 'black';
+        break;
     }
 
-
     return (
-      <Wrapper {...restProps} >
+      <Wrapper {...restProps}>
         <ButtonWrapper onPress={onClick} bgColor={bgColor} {...restProps}>
-          {icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />}
-          <Text fontSize={fontSize || 14} color={color}>{title}</Text>
+          {/*icon && <Icon fontSize={15} color={iconColor || 'transparent'} name={icon} />*/}
+          <Text fontSize={fontSize || 14} color={color}>
+            {title}
+          </Text>
         </ButtonWrapper>
       </Wrapper>
-    )
+    );
   }
 }
 
-
-export default Button
+export default Button;

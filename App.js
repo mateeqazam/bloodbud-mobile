@@ -6,20 +6,21 @@
  * @flow
  */
 
-
 import React from 'react';
-import {YellowBox} from 'react-native';
+import { YellowBox } from 'react-native';
 import AppNavigator from './app/main';
 
-
-import { withAuthenticator } from 'aws-amplify-react-native'
-import { Auth } from 'aws-amplify'
+import { withAuthenticator } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
 Auth.configure(awsconfig);
 
-
 // ignoring a react-navigation warning
-YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader', 'Class RCTCxxModule']);
+YellowBox.ignoreWarnings([
+  'Warning: isMounted(...) is deprecated',
+  'Module RCTImageLoader',
+  'Class RCTCxxModule',
+]);
 
 class App extends React.Component {
   render() {
@@ -27,4 +28,4 @@ class App extends React.Component {
   }
 }
 
-export default withAuthenticator(App)
+export default App;
